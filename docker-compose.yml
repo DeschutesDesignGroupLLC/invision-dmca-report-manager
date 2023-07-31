@@ -1,0 +1,75 @@
+version: '3'
+services:
+  nginx:
+    image: 'nginx:alpine'
+    ports:
+      - '80:80'
+    volumes:
+      - './invision:/var/www/html'
+#      - './src:/var/www/html/applications/yourappkey'
+      - './nginx/conf.d/site.conf:/etc/nginx/conf.d/site.conf'
+    networks:
+      - invision
+    depends_on:
+      - php
+      - mysql
+      - redis
+      - mailhog
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: invision-8.0/app
+    volumes:
+      - './invision:/var/www/html'
+#      - './src:/var/www/html/applications/yourappkey'
+      - './php/conf.d/php.ini:/usr/local/etc/php/conf.d/100-custom.ini'
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    networks:
+      - invision
+  mysql:
+    image: 'mysql:8.0'
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD:-password}'
+      MYSQL_DATABASE: '${DB_DATABASE:-invision}'
+      MYSQL_USER: '${DB_USERNAME:-invision}'
+      MYSQL_PASSWORD: '${DB_PASSWORD:-password}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    volumes:
+      - 'mysql:/var/lib/mysql'
+    networks:
+      - invision
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD:-password}"]
+      retries: 3
+      timeout: 5s
+  redis:
+    image: 'redis:alpine'
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis:/data'
+    networks:
+      - invision
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      retries: 3
+      timeout: 5s
+  mailhog:
+    image: 'mailhog/mailhog:latest'
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+    networks:
+      - invision
+networks:
+  invision:
+    driver: bridge
+volumes:
+  mysql:
+    driver: local
+  redis:
+    driver: local

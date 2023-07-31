@@ -1,0 +1,16 @@
+# IntelliJ Project Files
+.idea
+*.iml
+out
+gen
+_config.yml
+
+# Invision Core
+invision
+
+# Dependencies
+vendor
+sources/vendor
+
+# Environment variables
+.env
