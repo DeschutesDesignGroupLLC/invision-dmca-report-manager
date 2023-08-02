@@ -1,1 +1,25 @@
-{}
+{
+    "system": {
+        "history": {
+            "tab": "dmca",
+            "controller": "history",
+            "do": "",
+            "restriction": "history_manage",
+            "subcontrollers": ""
+        },
+        "reports": {
+            "tab": "dmca",
+            "controller": "reports",
+            "do": "",
+            "restriction": "reports_manage",
+            "subcontrollers": ""
+        },
+        "settings": {
+            "tab": "dmca",
+            "controller": "settings",
+            "do": "",
+            "restriction": "settings_manage",
+            "subcontrollers": ""
+        }
+    }
+}

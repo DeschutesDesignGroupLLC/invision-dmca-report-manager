@@ -1,1 +1,197 @@
-[]
+{
+    "dmca_reports": {
+        "name": "dmca_reports",
+        "columns": {
+            "id": {
+                "name": "id",
+                "type": "BIGINT",
+                "length": "20",
+                "unsigned": true,
+                "allow_null": false,
+                "default": null,
+                "auto_increment": true,
+                "comment": "ID Number"
+            },
+            "name": {
+                "name": "name",
+                "type": "TEXT",
+                "length": 255,
+                "decimals": null,
+                "values": null,
+                "allow_null": true,
+                "default": null,
+                "comment": "",
+                "unsigned": false,
+                "auto_increment": false
+            },
+            "email": {
+                "name": "email",
+                "type": "VARCHAR",
+                "length": 255,
+                "decimals": null,
+                "values": null,
+                "allow_null": true,
+                "default": null,
+                "comment": "",
+                "unsigned": false,
+                "auto_increment": false
+            },
+            "title": {
+                "name": "title",
+                "type": "TEXT",
+                "length": null,
+                "decimals": null,
+                "values": null,
+                "allow_null": true,
+                "default": null,
+                "comment": "",
+                "unsigned": false,
+                "auto_increment": false
+            },
+            "company": {
+                "name": "company",
+                "type": "TEXT",
+                "length": null,
+                "decimals": null,
+                "values": null,
+                "allow_null": true,
+                "default": null,
+                "comment": "",
+                "unsigned": false,
+                "auto_increment": false
+            },
+            "address": {
+                "name": "address",
+                "type": "TEXT",
+                "length": null,
+                "decimals": null,
+                "values": null,
+                "allow_null": true,
+                "default": null,
+                "comment": "",
+                "unsigned": false,
+                "auto_increment": false
+            },
+            "description": {
+                "name": "description",
+                "type": "TEXT",
+                "length": null,
+                "decimals": null,
+                "values": null,
+                "allow_null": true,
+                "default": null,
+                "comment": "",
+                "unsigned": false,
+                "auto_increment": false
+            },
+            "updated_at": {
+                "name": "updated_at",
+                "type": "INT",
+                "length": null,
+                "decimals": null,
+                "values": null,
+                "allow_null": true,
+                "default": null,
+                "comment": "",
+                "unsigned": false,
+                "auto_increment": false
+            },
+            "created_at": {
+                "name": "created_at",
+                "type": "INT",
+                "length": null,
+                "decimals": null,
+                "values": null,
+                "allow_null": true,
+                "default": null,
+                "comment": "",
+                "unsigned": false,
+                "auto_increment": false
+            },
+            "phone": {
+                "name": "phone",
+                "type": "TEXT",
+                "length": null,
+                "decimals": null,
+                "values": null,
+                "allow_null": true,
+                "default": null,
+                "comment": "",
+                "unsigned": false,
+                "auto_increment": false
+            },
+            "member_id": {
+                "name": "member_id",
+                "type": "BIGINT",
+                "length": null,
+                "decimals": null,
+                "values": null,
+                "allow_null": true,
+                "default": null,
+                "comment": "",
+                "unsigned": true,
+                "auto_increment": false
+            },
+            "type": {
+                "name": "type",
+                "type": "VARCHAR",
+                "length": 255,
+                "decimals": null,
+                "values": null,
+                "allow_null": true,
+                "default": null,
+                "comment": "",
+                "unsigned": false,
+                "auto_increment": false
+            },
+            "item": {
+                "name": "item",
+                "type": "BIGINT",
+                "length": null,
+                "decimals": null,
+                "values": null,
+                "allow_null": true,
+                "default": null,
+                "comment": "",
+                "unsigned": true,
+                "auto_increment": false
+            },
+            "url": {
+                "name": "url",
+                "type": "TEXT",
+                "length": null,
+                "decimals": null,
+                "values": null,
+                "allow_null": true,
+                "default": null,
+                "comment": "",
+                "unsigned": false,
+                "auto_increment": false
+            },
+            "status": {
+                "name": "status",
+                "type": "TINYINT",
+                "length": null,
+                "decimals": null,
+                "values": null,
+                "allow_null": false,
+                "default": "1",
+                "comment": "",
+                "unsigned": true,
+                "auto_increment": false
+            }
+        },
+        "indexes": {
+            "PRIMARY": {
+                "type": "primary",
+                "name": "PRIMARY",
+                "columns": [
+                    "id"
+                ],
+                "length": [
+                    null
+                ]
+            }
+        }
+    }
+}

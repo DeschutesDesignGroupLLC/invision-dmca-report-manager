@@ -1,1 +1,26 @@
-[]
+[
+    {
+        "key": "dmca_approval_email",
+        "default": ""
+    },
+    {
+        "key": "dmca_automatic_deletion",
+        "default": ""
+    },
+    {
+        "key": "dmca_denied_email",
+        "default": ""
+    },
+    {
+        "key": "dmca_faq",
+        "default": ""
+    },
+    {
+        "key": "dmca_final",
+        "default": ""
+    },
+    {
+        "key": "dmca_onhold_email",
+        "default": ""
+    }
+]

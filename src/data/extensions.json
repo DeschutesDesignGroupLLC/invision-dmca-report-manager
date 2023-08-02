@@ -1,0 +1,18 @@
+{
+    "core": {
+        "EditorLocations": {
+            "ApprovalEmail": "IPS\\dmca\\extensions\\core\\EditorLocations\\ApprovalEmail",
+            "DeniedEmail": "IPS\\dmca\\extensions\\core\\EditorLocations\\DeniedEmail",
+            "Faq": "IPS\\dmca\\extensions\\core\\EditorLocations\\Faq",
+            "FinalSteps": "IPS\\dmca\\extensions\\core\\EditorLocations\\FinalSteps",
+            "OnHoldEmail": "IPS\\dmca\\extensions\\core\\EditorLocations\\OnHoldEmail",
+            "ReportDescription": "IPS\\dmca\\extensions\\core\\EditorLocations\\ReportDescription"
+        },
+        "FrontNavigation": {
+            "FileAClaim": "IPS\\dmca\\extensions\\core\\FrontNavigation\\FileAClaim"
+        },
+        "Notifications": {
+            "Claim": "IPS\\dmca\\extensions\\core\\Notifications\\Claim"
+        }
+    }
+}

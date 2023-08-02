@@ -1,9 +1,1 @@
-{
-    "application_title": "Your App Name",
-    "app_author": "Your Company Name",
-    "app_directory": "yourappkey",
-    "app_protected": 0,
-    "app_website": "https:\/\/www.yourcompanywebsite.com",
-    "app_update_check": "",
-    "app_hide_tab": 0
-}
+{"application_title":"DMCA Report Manager","app_author":"Deschutes Design Group LLC","app_directory":"dmca","app_protected":false,"app_website":{"data":{"scheme":"https","host":"www.deschutesdesigngroup.com","port":null,"user":null,"pass":null,"path":null,"query":"","fragment":null},"queryString":[],"hiddenQueryString":[]},"app_update_check":"","app_hide_tab":true}

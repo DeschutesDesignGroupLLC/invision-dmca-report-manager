@@ -6,7 +6,7 @@ services:
       - '80:80'
     volumes:
       - './invision:/var/www/html'
-#      - './src:/var/www/html/applications/yourappkey'
+      - './src:/var/www/html/applications/dmca'
       - './nginx/conf.d/site.conf:/etc/nginx/conf.d/site.conf'
     networks:
       - invision
@@ -22,7 +22,7 @@ services:
     image: invision-8.0/app
     volumes:
       - './invision:/var/www/html'
-#      - './src:/var/www/html/applications/yourappkey'
+      - './src:/var/www/html/applications/dmca'
       - './php/conf.d/php.ini:/usr/local/etc/php/conf.d/100-custom.ini'
     extra_hosts:
       - 'host.docker.internal:host-gateway'

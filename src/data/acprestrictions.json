@@ -1,1 +1,13 @@
-{}
+{
+    "system": {
+        "reports": {
+            "reports_manage": "reports_manage"
+        },
+        "settings": {
+            "settings_manage": "settings_manage"
+        },
+        "history": {
+            "history_manage": "history_manage"
+        }
+    }
+}

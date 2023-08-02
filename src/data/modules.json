@@ -1,1 +1,16 @@
-{}
+{
+    "front": {
+        "system": {
+            "default_controller": "report",
+            "protected": 0,
+            "default": 0
+        }
+    },
+    "admin": {
+        "system": {
+            "default_controller": "history",
+            "protected": 0,
+            "default": 0
+        }
+    }
+}
