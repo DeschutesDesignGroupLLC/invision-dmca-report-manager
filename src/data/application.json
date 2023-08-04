@@ -1,1 +1,9 @@
-{"application_title":"DMCA Report Manager","app_author":"Deschutes Design Group LLC","app_directory":"dmca","app_protected":false,"app_website":{"data":{"scheme":"https","host":"www.deschutesdesigngroup.com","port":null,"user":null,"pass":null,"path":null,"query":"","fragment":null},"queryString":[],"hiddenQueryString":[]},"app_update_check":"","app_hide_tab":true}
+{
+    "application_title": "DMCA Copyright Claim Manager",
+    "app_author": "Deschutes Design Group LLC",
+    "app_directory": "dmca",
+    "app_protected": 0,
+    "app_website": null,
+    "app_update_check": "",
+    "app_hide_tab": 1
+}

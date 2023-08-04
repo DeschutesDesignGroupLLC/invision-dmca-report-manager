@@ -94,10 +94,10 @@ class _history extends \IPS\Dispatcher\Controller
                 $report = Report::load($row['id']);
 
                 return match (true) {
-                    ($report->status === Report::REPORT_STATUS_SUBMITTED || $report->status === Report::REPORT_STATUS_APPROVED) && $report->item() => \IPS\Theme::i()->getTemplate('history', 'dmca', 'admin')->badge('Automatic Removal Pending', 'ipsBadge_warning'),
-                    $report->status === Report::REPORT_STATUS_APPROVED && !$report->item() => \IPS\Theme::i()->getTemplate('history', 'dmca', 'admin')->badge('Content Deleted', 'ipsBadge_positive'),
+                    $report->status === Report::REPORT_STATUS_SUBMITTED && $report->item() => \IPS\Theme::i()->getTemplate('history', 'dmca', 'admin')->badge('Automatic Removal Pending', 'ipsBadge_warning'),
+                    $report->status === Report::REPORT_STATUS_APPROVED && (!$report->item() || $report->type === 'other') => \IPS\Theme::i()->getTemplate('history', 'dmca', 'admin')->badge('Content Deleted', 'ipsBadge_positive'),
                     $report->status === Report::REPORT_STATUS_DENIED => \IPS\Theme::i()->getTemplate('history', 'dmca', 'admin')->badge('Content Preserved', 'ipsBadge_negative'),
-                    default => \IPS\Theme::i()->getTemplate('history', 'dmca', 'admin')->badge('Manual Review Required', 'ipsBadge_intermediary')
+                    default => \IPS\Theme::i()->getTemplate('history', 'dmca', 'admin')->badge('Manual Removal Required', 'ipsBadge_intermediary')
                 };
             }
         );

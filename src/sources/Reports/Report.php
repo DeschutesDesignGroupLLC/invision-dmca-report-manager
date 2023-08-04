@@ -166,6 +166,15 @@ class _Report extends \IPS\Node\Model
     {
         if (!$this->id) {
             $values['created_at'] = \IPS\DateTime::create()->getTimestamp();
+
+            $member = \IPS\Member::load($values['email'], 'email');
+            if ($member && $member->member_id) {
+                $notification = new \IPS\Notification(\IPS\Application::load('dmca'), 'submitted', null, [\IPS\Settings::i()->dmca_submitted_email]);
+                $notification->recipients->attach($member);
+                $notification->send();
+            } else {
+                \IPS\Email::buildFromTemplate('dmca', 'submitted', [$values['name'], \IPS\Settings::i()->dmca_submitted_email], Email::TYPE_TRANSACTIONAL)->send($values['email']);
+            }
         }
 
         $values['updated_at'] = \IPS\DateTime::create()->getTimestamp();
@@ -201,8 +210,25 @@ class _Report extends \IPS\Node\Model
         };
     }
 
+    /**
+     * @return null
+     */
     public function deleteItem()
     {
+        match (true) {
+            $this->item() instanceof Topic => $this->item()->delete(),
+            default => null
+        };
+
+        $member = \IPS\Member::load($this->email, 'email');
+        if ($member && $member->member_id) {
+            $notification = new \IPS\Notification(\IPS\Application::load('dmca'), 'deleted', null, [\IPS\Settings::i()->dmca_deleted_email]);
+            $notification->recipients->attach($member);
+            $notification->send();
+        } else {
+            \IPS\Email::buildFromTemplate('dmca', 'deleted', [$this->name, \IPS\Settings::i()->dmca_deleted_email], Email::TYPE_TRANSACTIONAL)->send($this->email);
+        }
+
         return null;
     }
 
@@ -222,6 +248,32 @@ class _Report extends \IPS\Node\Model
             $notification->send();
         } else {
             \IPS\Email::buildFromTemplate('dmca', 'approved', [$this->name, $emailMessage], Email::TYPE_TRANSACTIONAL)->send($this->email);
+        }
+
+        $infringingMember = \IPS\Member::load($this->member_id);
+        if ($infringingMember && $infringingMember->member_id) {
+            if ($infringingMember->copyright_strikes == 1) {
+                $notification = new \IPS\Notification(\IPS\Application::load('dmca'), 'firststrike', null, [\IPS\Settings::i()->dmca_first_strike_email]);
+                $notification->recipients->attach($infringingMember);
+                $notification->send();
+            } elseif ($infringingMember->copyright_strikes == 2) {
+                $notification = new \IPS\Notification(\IPS\Application::load('dmca'), 'secondstrike', null, [\IPS\Settings::i()->dmca_second_strike_email]);
+                $notification->recipients->attach($infringingMember);
+                $notification->send();
+            } else {
+                $notification = new \IPS\Notification(\IPS\Application::load('dmca'), 'thirdstrike', null, [\IPS\Settings::i()->dmca_third_strike_email]);
+                $notification->recipients->attach($infringingMember);
+                $notification->send();
+
+                if (\IPS\Settings::i()->dmca_group) {
+                    $groups = explode(',', $infringingMember->mgroup_others);
+                    $groupsToAdd = explode(',', \IPS\Settings::i()->dmca_group);
+                    $newGroups = array_filter(array_unique(array_merge($groups, $groupsToAdd)));
+
+                    $infringingMember->mgroup_others = implode(',', $newGroups);
+                    $infringingMember->save();
+                }
+            }
         }
 
         return $this;

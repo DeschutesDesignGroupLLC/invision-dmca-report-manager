@@ -1,0 +1,18 @@
+{
+    "added": [
+        "dmca_approval_email",
+        "dmca_automatic_deletion",
+        "dmca_deleted_email",
+        "dmca_denied_email",
+        "dmca_faq",
+        "dmca_final",
+        "dmca_first_strike_email",
+        "dmca_group",
+        "dmca_onhold_email",
+        "dmca_second_strike_email",
+        "dmca_submitted_email",
+        "dmca_third_strike_email"
+    ],
+    "edited": [],
+    "removed": []
+}

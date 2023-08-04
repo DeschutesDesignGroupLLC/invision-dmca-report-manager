@@ -1,0 +1,19 @@
+{
+    "added": [
+        "notification_denied",
+        "denied",
+        "notification_approved",
+        "onhold",
+        "deleted",
+        "approved",
+        "notification_firststrike",
+        "notification_secondstrike",
+        "notification_thirdstrike",
+        "notification_onhold",
+        "notification_deleted",
+        "notification_submitted",
+        "submitted"
+    ],
+    "edited": [],
+    "removed": []
+}

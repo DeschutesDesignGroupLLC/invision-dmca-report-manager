@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build>
+ <module key="front/system"><![CDATA[{"default_controller":"report","protected":0,"default":0}]]></module>
+ <module key="admin/system"><![CDATA[{"default_controller":"history","protected":0,"default":0}]]></module>
+ <task frequency="P0Y0M1DT0H0M0S">deleteCopyrightClaimContent</task>
+ <setting key="dmca_approval_email"><![CDATA[{"key":"dmca_approval_email","default":""}]]></setting>
+ <setting key="dmca_automatic_deletion"><![CDATA[{"key":"dmca_automatic_deletion","default":""}]]></setting>
+ <setting key="dmca_deleted_email"><![CDATA[{"key":"dmca_deleted_email","default":""}]]></setting>
+ <setting key="dmca_denied_email"><![CDATA[{"key":"dmca_denied_email","default":""}]]></setting>
+ <setting key="dmca_faq"><![CDATA[{"key":"dmca_faq","default":""}]]></setting>
+ <setting key="dmca_final"><![CDATA[{"key":"dmca_final","default":""}]]></setting>
+ <setting key="dmca_first_strike_email"><![CDATA[{"key":"dmca_first_strike_email","default":""}]]></setting>
+ <setting key="dmca_group"><![CDATA[{"key":"dmca_group","default":""}]]></setting>
+ <setting key="dmca_onhold_email"><![CDATA[{"key":"dmca_onhold_email","default":""}]]></setting>
+ <setting key="dmca_second_strike_email"><![CDATA[{"key":"dmca_second_strike_email","default":""}]]></setting>
+ <setting key="dmca_submitted_email"><![CDATA[{"key":"dmca_submitted_email","default":""}]]></setting>
+ <setting key="dmca_third_strike_email"><![CDATA[{"key":"dmca_third_strike_email","default":""}]]></setting>
+ <hook key="Member"><![CDATA[{"type":"C","class":"\\IPS\\Member"}]]></hook>
+</build>

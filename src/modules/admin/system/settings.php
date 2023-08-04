@@ -33,10 +33,19 @@ class _settings extends \IPS\Dispatcher\Controller
     {
         $form = new Form();
 
+        $groups = [];
+        foreach (\IPS\Member\Group::groups(true, false) as $group) {
+            $groups[$group->g_id] = $group->name;
+        }
+
         $form->addTab('dmca_settings_tab_claims');
         $form->addHeader('dmca_settings');
         $form->add(new Form\Interval('dmca_automatic_deletion', \IPS\Settings::i()->dmca_automatic_deletion, false, [
             'valueAs' => \IPS\Helpers\Form\Interval::DAYS
+        ]));
+        $form->add(new \IPS\Helpers\Form\Select('dmca_group', explode(',', \IPS\Settings::i()->dmca_group), false, [
+            'options' => $groups,
+            'multiple' => true,
         ]));
         $form->add(new Form\Editor('dmca_faq', \IPS\Settings::i()->dmca_faq, true, [
             'autoSaveKey' => 'dmca_faq',
@@ -51,6 +60,11 @@ class _settings extends \IPS\Dispatcher\Controller
 
         $form->addTab('dmca_settings_tab_notifications');
         $form->addHeader('dmca_settings');
+        $form->add(new Form\Editor('dmca_submitted_email', \IPS\Settings::i()->dmca_submitted_email, true, [
+            'autoSaveKey' => 'dmca_submitted_email',
+            'app' => 'dmca',
+            'key' => 'SubmittedEmail'
+        ]));
         $form->add(new Form\Editor('dmca_approval_email', \IPS\Settings::i()->dmca_approval_email, true, [
             'autoSaveKey' => 'dmca_approval_email',
             'app' => 'dmca',
@@ -65,6 +79,29 @@ class _settings extends \IPS\Dispatcher\Controller
             'autoSaveKey' => 'dmca_denied_email',
             'app' => 'dmca',
             'key' => 'DeniedEmail'
+        ]));
+        $form->add(new Form\Editor('dmca_deleted_email', \IPS\Settings::i()->dmca_deleted_email, true, [
+            'autoSaveKey' => 'dmca_deleted_email',
+            'app' => 'dmca',
+            'key' => 'DeletedEmail'
+        ]));
+
+        $form->addTab('dmca_settings_tab_strike_notifications');
+        $form->addHeader('dmca_settings');
+        $form->add(new Form\Editor('dmca_first_strike_email', \IPS\Settings::i()->dmca_first_strike_email, true, [
+            'autoSaveKey' => 'dmca_first_strike_email',
+            'app' => 'dmca',
+            'key' => 'FirstStrikeEmail'
+        ]));
+        $form->add(new Form\Editor('dmca_second_strike_email', \IPS\Settings::i()->dmca_second_strike_email, true, [
+            'autoSaveKey' => 'dmca_second_strike_email',
+            'app' => 'dmca',
+                'key' => 'SecondStrikeEmail'
+        ]));
+        $form->add(new Form\Editor('dmca_third_strike_email', \IPS\Settings::i()->dmca_third_strike_email, true, [
+            'autoSaveKey' => 'dmca_third_strike_email',
+            'app' => 'dmca',
+            'key' => 'ThirdStrikeEmail'
         ]));
 
         if ($form->values()) {

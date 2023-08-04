@@ -1,7 +1,7 @@
 <?php
 
 $lang = array(
-    '__app_dmca' => 'DMCA Report Manager',
+    '__app_dmca' => 'DMCA Copyright Claim Manager',
 
     'menutab__dmca' => 'DMCA Manager',
     'menutab__dmca_icon' => 'flag',
@@ -11,18 +11,27 @@ $lang = array(
     'menu__dmca_system_reports' => 'Reports',
     'menu__dmca_system_settings' => 'Settings',
 
+    'memberACPProfileTitle_dmca_CopyrightInfringements' => 'Copyright Infringements',
+
     'frontnavigation_dmca' => 'File A Copyright Claim',
 
     'notifications__dmca_Claim' => 'Copyright Claims',
     'notifications__dmca_Claim_desc' => 'Receive notifications regarding updates about your filed copyright claims.',
 
+    'mailsub__dmca_notification_submitted' => 'Your copyright claim was submitted',
     'mailsub__dmca_notification_approved' => 'Your copyright claim was approved',
     'mailsub__dmca_notification_onhold' => 'Your copyright claim was placed on hold',
     'mailsub__dmca_notification_denied' => 'Your copyright claim was denied',
+    'mailsub__dmca_notification_deleted' => 'The item in your copyright claim has been deleted',
+    'mailsub__dmca_notification_firststrike' => 'A copyright claim has been filed against some content you posted. This is your first strike.',
+    'mailsub__dmca_notification_secondstrike' => 'A copyright claim has been filed against some content you posted. This is your second strike.',
+    'mailsub__dmca_notification_thirdstrike' => 'A copyright claim has been filed against some content you posted. This is your third and last strike.',
 
+    'mailsub__dmca_submitted' => 'Your copyright claim was submitted',
     'mailsub__dmca_approved' => 'Your copyright claim was approved',
     'mailsub__dmca_onhold' => 'Your copyright claim was placed on hold',
     'mailsub__dmca_denied' => 'Your copyright claim was denied',
+    'mailsub__dmca_deleted' => 'The item in your copyright claim has been deleted',
 
     'r__reports' => 'Reports',
     'r__reports_manage' => 'Can manage reports?',
@@ -36,18 +45,28 @@ $lang = array(
 
     'dmca_settings' => 'Settings',
     'dmca_settings_tab_claims' => 'Claims',
-    'dmca_settings_tab_notifications' => 'Notifications',
+    'dmca_settings_tab_notifications' => 'Claimant Notifications',
     'dmca_automatic_deletion' => 'Automatic Claim Deletion',
-    'dmca_automatic_deletion_desc' => 'Automatically delete claimed copyright infringement items after a certain period when the claim status is set to Submitted or Approved.',
+    'dmca_automatic_deletion_desc' => 'Automatically delete claimed copyright infringement items after a certain period when the claim status is set to Submitted.',
+    'dmca_group' => 'Infringing Group',
+    'dmca_group_desc' => 'The group the member will be moved to when they receive their third strike.',
     'dmca_faq' => 'Frequently Asked Questions',
     'dmca_final' => 'Final Steps',
     'dmca_final_desc' => 'Enter some text that will shown to the member after they file a claim.',
-    'dmca_approval_email' => 'Default Approval Email',
+    'dmca_approval_email' => 'Default Claim Approved Email',
     'dmca_approval_email_desc' => 'This may be edited on an individual claim basis.',
-    'dmca_onhold_email' => 'Default On Hold Email',
+    'dmca_onhold_email' => 'Default Claim On Hold Email',
     'dmca_onhold_email_desc' => 'This may be edited on an individual claim basis.',
-    'dmca_denied_email' => 'Default Denied Email',
+    'dmca_denied_email' => 'Default Claim Denied Email',
     'dmca_denied_email_desc' => 'This may be edited on an individual claim basis.',
+    'dmca_deleted_email' => 'Default Deleted Item Email',
+    'dmca_deleted_email_desc' => 'The email that will be sent went the copyright claimed item has been deleted.',
+    'dmca_submitted_email' => 'Default Claim Submitted Email',
+    'dmca_submitted_email_desc' => 'The email that will be sent when a copyright claim is submitted.',
+    'dmca_settings_tab_strike_notifications' => 'Infringing Member Notifications',
+    'dmca_first_strike_email' => 'First Strike Email',
+    'dmca_second_strike_email' => 'Second Strike Email',
+    'dmca_third_strike_email' => 'Third Strike Email',
 
     'name' => 'Full Name',
     'email' => 'Email',
@@ -90,4 +109,7 @@ $lang = array(
     'dmca_delete' => 'Delete',
 
     'dcma_send_mail' => 'Send Email',
+
+    'dcma_chart_infringements' => 'Infringements',
+    'dcma_chart_infringements_title' => 'Copyright Infringements For Member',
 );

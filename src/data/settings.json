@@ -8,6 +8,10 @@
         "default": ""
     },
     {
+        "key": "dmca_deleted_email",
+        "default": ""
+    },
+    {
         "key": "dmca_denied_email",
         "default": ""
     },
@@ -20,7 +24,27 @@
         "default": ""
     },
     {
+        "key": "dmca_first_strike_email",
+        "default": ""
+    },
+    {
+        "key": "dmca_group",
+        "default": ""
+    },
+    {
         "key": "dmca_onhold_email",
+        "default": ""
+    },
+    {
+        "key": "dmca_second_strike_email",
+        "default": ""
+    },
+    {
+        "key": "dmca_submitted_email",
+        "default": ""
+    },
+    {
+        "key": "dmca_third_strike_email",
         "default": ""
     }
 ]

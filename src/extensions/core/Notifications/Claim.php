@@ -33,13 +33,30 @@ class _Claim
         return array(
             'membersuspension' => array(
                 'type' => 'standard',
-                'notificationTypes' => ['approved', 'onhold', 'denied', 'deleted'],
+                'notificationTypes' => ['submitted', 'approved', 'onhold', 'denied', 'deleted', 'firststrike', 'secondstrike', 'thirdstrike'],
                 'default' => ['email', 'inline'],
                 'disabled' => ['push'],
                 'description' => 'notifications__dmca_Claim_desc',
                 'showTitle' => false,
                 'title' => 'notifications__dmca_Claim'
             ),
+        );
+    }
+
+    /**
+     * Parse notification: submitted
+     *
+     * @param	\IPS\Notification\Inline	$notification	The notification
+     * @param	bool						$htmlEscape		TRUE to escape HTML in title
+     * @return	array
+     */
+    public function parse_submitted(\IPS\Notification\Inline $notification, $htmlEscape=true): array
+    {
+        return array(
+            'title' => "Your copyright claim was submitted",
+            'url' => \IPS\Http\Url::internal(''),
+            'content' => "Your copyright claim was submitted",
+            'author' =>  \IPS\Member::loggedIn(),
         );
     }
 
@@ -90,6 +107,74 @@ class _Claim
             'title' => "Your copyright claim was denied",
             'url' => \IPS\Http\Url::internal(''),
             'content' => "Your copyright claim was denied",
+            'author' =>  \IPS\Member::loggedIn(),
+        );
+    }
+
+    /**
+     * Parse notification: deleted
+     *
+     * @param	\IPS\Notification\Inline	$notification	The notification
+     * @param	bool						$htmlEscape		TRUE to escape HTML in title
+     * @return	array
+     */
+    public function parse_deleted(\IPS\Notification\Inline $notification, $htmlEscape=true): array
+    {
+        return array(
+            'title' => "The item in your copyright claim has been deleted",
+            'url' => \IPS\Http\Url::internal(''),
+            'content' => "The item in your copyright claim has been deleted",
+            'author' =>  \IPS\Member::loggedIn(),
+        );
+    }
+
+    /**
+     * Parse notification: firststrike
+     *
+     * @param	\IPS\Notification\Inline	$notification	The notification
+     * @param	bool						$htmlEscape		TRUE to escape HTML in title
+     * @return	array
+     */
+    public function parse_firststrike(\IPS\Notification\Inline $notification, $htmlEscape=true): array
+    {
+        return array(
+            'title' => "A copyright claim has been filed against some content you posted. This is your first strike.",
+            'url' => \IPS\Http\Url::internal(''),
+            'content' => "A copyright claim has been filed against some content you posted. This is your first strike.",
+            'author' =>  \IPS\Member::loggedIn(),
+        );
+    }
+
+    /**
+     * Parse notification: secondstrike
+     *
+     * @param	\IPS\Notification\Inline	$notification	The notification
+     * @param	bool						$htmlEscape		TRUE to escape HTML in title
+     * @return	array
+     */
+    public function parse_secondstrike(\IPS\Notification\Inline $notification, $htmlEscape=true): array
+    {
+        return array(
+            'title' => "A copyright claim has been filed against some content you posted. This is your second strike.",
+            'url' => \IPS\Http\Url::internal(''),
+            'content' => "A copyright claim has been filed against some content you posted. This is your second strike.",
+            'author' =>  \IPS\Member::loggedIn(),
+        );
+    }
+
+    /**
+     * Parse notification: thirdstrike
+     *
+     * @param	\IPS\Notification\Inline	$notification	The notification
+     * @param	bool						$htmlEscape		TRUE to escape HTML in title
+     * @return	array
+     */
+    public function parse_thirdstrike(\IPS\Notification\Inline $notification, $htmlEscape=true): array
+    {
+        return array(
+            'title' => "A copyright claim has been filed against some content you posted. This is your third and last strike.",
+            'url' => \IPS\Http\Url::internal(''),
+            'content' => "A copyright claim has been filed against some content you posted. This is your third and last strike.",
             'author' =>  \IPS\Member::loggedIn(),
         );
     }

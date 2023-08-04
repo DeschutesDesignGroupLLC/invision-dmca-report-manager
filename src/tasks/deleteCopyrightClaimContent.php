@@ -39,11 +39,10 @@ class _deleteCopyrightClaimContent extends \IPS\Task
     {
         if ($interval = \IPS\Settings::i()->dmca_automatic_deletion) {
             $where[] = ['created_at < ?', \IPS\DateTime::create()->sub(new \DateInterval('P' . $interval . 'D'))->getTimestamp()];
-            $where[] = ['status = ? OR status = ?', \IPS\dmca\Reports\Report::REPORT_STATUS_APPROVED, \IPS\dmca\Reports\Report::REPORT_STATUS_SUBMITTED];
+            $where[] = ['status = ?', \IPS\dmca\Reports\Report::REPORT_STATUS_SUBMITTED];
 
             foreach (new ActiveRecordIterator(\IPS\Db::i()->select('*', \IPS\dmca\Reports\Report::$databaseTable, $where), 'IPS\dmca\Reports\Report') as $report) {
-                $report->status = \IPS\dmca\Reports\Report::REPORT_STATUS_APPROVED;
-                $report->save();
+                $report->approve(\IPS\Settings::i()->dmca_approval_email);
                 $report->deleteItem();
             }
         }

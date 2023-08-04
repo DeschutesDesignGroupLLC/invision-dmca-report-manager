@@ -2,14 +2,25 @@
     "core": {
         "EditorLocations": {
             "ApprovalEmail": "IPS\\dmca\\extensions\\core\\EditorLocations\\ApprovalEmail",
+            "DeletedEmail": "IPS\\dmca\\extensions\\core\\EditorLocations\\DeletedEmail",
             "DeniedEmail": "IPS\\dmca\\extensions\\core\\EditorLocations\\DeniedEmail",
             "Faq": "IPS\\dmca\\extensions\\core\\EditorLocations\\Faq",
             "FinalSteps": "IPS\\dmca\\extensions\\core\\EditorLocations\\FinalSteps",
+            "FirstStrikeEmail": "IPS\\dmca\\extensions\\core\\EditorLocations\\FirstStrikeEmail",
             "OnHoldEmail": "IPS\\dmca\\extensions\\core\\EditorLocations\\OnHoldEmail",
-            "ReportDescription": "IPS\\dmca\\extensions\\core\\EditorLocations\\ReportDescription"
+            "ReportDescription": "IPS\\dmca\\extensions\\core\\EditorLocations\\ReportDescription",
+            "SecondStrikeEmail": "IPS\\dmca\\extensions\\core\\EditorLocations\\SecondStrikeEmail",
+            "SubmittedEmail": "IPS\\dmca\\extensions\\core\\EditorLocations\\SubmittedEmail",
+            "ThirdStrikeEmail": "IPS\\dmca\\extensions\\core\\EditorLocations\\ThirdStrikeEmail"
         },
         "FrontNavigation": {
             "FileAClaim": "IPS\\dmca\\extensions\\core\\FrontNavigation\\FileAClaim"
+        },
+        "MemberACPProfileBlocks": {
+            "CopyrightInfringementChart": "IPS\\dmca\\extensions\\core\\MemberACPProfileBlocks\\CopyrightInfringementChart"
+        },
+        "MemberACPProfileTabs": {
+            "CopyrightInfringements": "IPS\\dmca\\extensions\\core\\MemberACPProfileTabs\\CopyrightInfringements"
         },
         "Notifications": {
             "Claim": "IPS\\dmca\\extensions\\core\\Notifications\\Claim"

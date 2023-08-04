@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language>
+ <app key="dmca" version="10000">
+  <word key="__app_dmca" js="0">DMCA Copyright Claim Manager</word>
+  <word key="menutab__dmca" js="0">DMCA Manager</word>
+  <word key="menutab__dmca_icon" js="0">flag</word>
+  <word key="menu__dmca_system" js="0">System</word>
+  <word key="menu__dmca_system_history" js="0">History</word>
+  <word key="menu__dmca_system_reports" js="0">Reports</word>
+  <word key="menu__dmca_system_settings" js="0">Settings</word>
+  <word key="memberACPProfileTitle_dmca_CopyrightInfringements" js="0">Copyright Infringements</word>
+  <word key="frontnavigation_dmca" js="0">File A Copyright Claim</word>
+  <word key="notifications__dmca_Claim" js="0">Copyright Claims</word>
+  <word key="notifications__dmca_Claim_desc" js="0">Receive notifications regarding updates about your filed copyright claims.</word>
+  <word key="mailsub__dmca_notification_submitted" js="0">Your copyright claim was submitted</word>
+  <word key="mailsub__dmca_notification_approved" js="0">Your copyright claim was approved</word>
+  <word key="mailsub__dmca_notification_onhold" js="0">Your copyright claim was placed on hold</word>
+  <word key="mailsub__dmca_notification_denied" js="0">Your copyright claim was denied</word>
+  <word key="mailsub__dmca_notification_deleted" js="0">The item in your copyright claim has been deleted</word>
+  <word key="mailsub__dmca_notification_firststrike" js="0">A copyright claim has been filed against some content you posted. This is your first strike.</word>
+  <word key="mailsub__dmca_notification_secondstrike" js="0">A copyright claim has been filed against some content you posted. This is your second strike.</word>
+  <word key="mailsub__dmca_notification_thirdstrike" js="0">A copyright claim has been filed against some content you posted. This is your third and last strike.</word>
+  <word key="mailsub__dmca_submitted" js="0">Your copyright claim was submitted</word>
+  <word key="mailsub__dmca_approved" js="0">Your copyright claim was approved</word>
+  <word key="mailsub__dmca_onhold" js="0">Your copyright claim was placed on hold</word>
+  <word key="mailsub__dmca_denied" js="0">Your copyright claim was denied</word>
+  <word key="mailsub__dmca_deleted" js="0">The item in your copyright claim has been deleted</word>
+  <word key="r__reports" js="0">Reports</word>
+  <word key="r__reports_manage" js="0">Can manage reports?</word>
+  <word key="dmca_wizard_faq" js="0">Frequently Asked Questions</word>
+  <word key="dmca_wizard_faq_read" js="0">I have read the Frequently Asked Questions.</word>
+  <word key="dmca_wizard_faq_error" js="0">Please read the Frequently Asked Questions and select the checkbox before proceeding.</word>
+  <word key="dmca_wizard_report" js="0">File A Report</word>
+  <word key="dmca_wizard_report_submit" js="0">File Claim</word>
+  <word key="dmca_wizard_final" js="0">Final Steps</word>
+  <word key="dmca_settings" js="0">Settings</word>
+  <word key="dmca_settings_tab_claims" js="0">Claims</word>
+  <word key="dmca_settings_tab_notifications" js="0">Claimant Notifications</word>
+  <word key="dmca_automatic_deletion" js="0">Automatic Claim Deletion</word>
+  <word key="dmca_automatic_deletion_desc" js="0">Automatically delete claimed copyright infringement items after a certain period when the claim status is set to Submitted.</word>
+  <word key="dmca_group" js="0">Infringing Group</word>
+  <word key="dmca_group_desc" js="0">The group the member will be moved to when they receive their third strike.</word>
+  <word key="dmca_faq" js="0">Frequently Asked Questions</word>
+  <word key="dmca_final" js="0">Final Steps</word>
+  <word key="dmca_final_desc" js="0">Enter some text that will shown to the member after they file a claim.</word>
+  <word key="dmca_approval_email" js="0">Default Claim Approved Email</word>
+  <word key="dmca_approval_email_desc" js="0">This may be edited on an individual claim basis.</word>
+  <word key="dmca_onhold_email" js="0">Default Claim On Hold Email</word>
+  <word key="dmca_onhold_email_desc" js="0">This may be edited on an individual claim basis.</word>
+  <word key="dmca_denied_email" js="0">Default Claim Denied Email</word>
+  <word key="dmca_denied_email_desc" js="0">This may be edited on an individual claim basis.</word>
+  <word key="dmca_deleted_email" js="0">Default Deleted Item Email</word>
+  <word key="dmca_deleted_email_desc" js="0">The email that will be sent went the copyright claimed item has been deleted.</word>
+  <word key="dmca_submitted_email" js="0">Default Claim Submitted Email</word>
+  <word key="dmca_submitted_email_desc" js="0">The email that will be sent when a copyright claim is submitted.</word>
+  <word key="dmca_settings_tab_strike_notifications" js="0">Infringing Member Notifications</word>
+  <word key="dmca_first_strike_email" js="0">First Strike Email</word>
+  <word key="dmca_second_strike_email" js="0">Second Strike Email</word>
+  <word key="dmca_third_strike_email" js="0">Third Strike Email</word>
+  <word key="name" js="0">Full Name</word>
+  <word key="email" js="0">Email</word>
+  <word key="title" js="0">Title</word>
+  <word key="company" js="0">Company</word>
+  <word key="phone" js="0">Phone Number</word>
+  <word key="member_id" js="0">Infringing Member</word>
+  <word key="member_id_desc" js="0">The member responsible for posting the copyrighted material.</word>
+  <word key="type" js="0">Content Type</word>
+  <word key="type_desc" js="0">Select the type of content that contains the copyrighted material.</word>
+  <word key="item" js="0">Content Item</word>
+  <word key="item_desc" js="0">Select the item containing the copyrighted material. You must submit a report for each claimed item.</word>
+  <word key="urls" js="0">Infringing URLs</word>
+  <word key="urls_desc" js="0">Post a link of each URL containing the copyrighted material.</word>
+  <word key="description" js="0">Description of Original Work</word>
+  <word key="description_desc" js="0">Describe the copyrighted material in full detail, including links to the original work or evidence of source material.</word>
+  <word key="report_id" js="0">Report</word>
+  <word key="created_at" js="0">Created At</word>
+  <word key="dmca_reports_id" js="0">ID</word>
+  <word key="dmca_reports_name" js="0">Reporting Person</word>
+  <word key="dmca_reports_email" js="0">Reporting Email</word>
+  <word key="dmca_reports_member_id" js="0">Infringing Member</word>
+  <word key="dmca_reports_report" js="0">Report</word>
+  <word key="dmca_reports_item" js="0">Reported Item</word>
+  <word key="dmca_reports_created_at" js="0">Reported At</word>
+  <word key="dmca_reports_status" js="0">Status</word>
+  <word key="dmca_reports_automation" js="0">Automation</word>
+  <word key="dmca_report_submitted" js="0">Submitted</word>
+  <word key="dmca_report_approved" js="0">Approved</word>
+  <word key="dmca_report_denied" js="0">Denied</word>
+  <word key="dmca_report_pending" js="0">Pending</word>
+  <word key="dmca_report_on_hold" js="0">On Hold</word>
+  <word key="dmca_report_deleted" js="0">Deleted</word>
+  <word key="dmca_approve" js="0">Approve</word>
+  <word key="dmca_deny" js="0">Deny</word>
+  <word key="dmca_on_hold" js="0">Place On Hold</word>
+  <word key="dmca_delete" js="0">Delete</word>
+  <word key="dcma_send_mail" js="0">Send Email</word>
+  <word key="dcma_chart_infringements" js="0">Infringements</word>
+  <word key="dcma_chart_infringements_title" js="0">Copyright Infringements For Member</word>
+ </app>
+</language>
