@@ -1,5 +1,7 @@
-<ips:template parameters="$name, $message, $email" />
+<ips:template parameters="$name, $message, $report, $email" />
 <strong style="font-size: 17px">Hi {$name},</strong>
 <br>
 {$message|raw}
+{$report|raw}
+<br>
 <em style='color: #8c8c8c'>&mdash; {setting="board_name"}</em>

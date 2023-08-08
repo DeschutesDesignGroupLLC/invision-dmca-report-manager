@@ -1,4 +1,5 @@
-<ips:template parameters="$message, $email" />
+<ips:template parameters="$message, $report, $email" />
 {$message|raw}
+{$report|raw}
 
 -- {setting="board_name"}

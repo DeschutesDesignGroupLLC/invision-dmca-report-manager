@@ -2,6 +2,7 @@
 
 namespace IPS\dmca\modules\admin\system;
 
+use IPS\core\Warnings\Reason;
 use IPS\Helpers\Form;
 
 /* To prevent PHP errors (extending class does not exist) revealing path */
@@ -41,17 +42,42 @@ class _settings extends \IPS\Dispatcher\Controller
         $form->addTab('dmca_settings_tab_claims');
         $form->addHeader('dmca_settings');
         $form->add(new Form\Interval('dmca_automatic_deletion', \IPS\Settings::i()->dmca_automatic_deletion, false, [
-            'valueAs' => \IPS\Helpers\Form\Interval::DAYS
+            'valueAs' => Form\Interval::DAYS
         ]));
-        $form->add(new \IPS\Helpers\Form\Select('dmca_group', explode(',', \IPS\Settings::i()->dmca_group), false, [
+        $form->addHeader('dmca_settings_groups');
+        $form->add(new Form\Select('dmca_group', explode(',', \IPS\Settings::i()->dmca_group), false, [
             'options' => $groups,
             'multiple' => true,
+        ]));
+        $form->addHeader('dmca_settings_warnings');
+        $form->add(new Form\YesNo('dcma_warning_enable', \IPS\Settings::i()->dcma_warning_enable, true));
+        $form->add(new Form\YesNo('dcma_warning_acknowledgement', \IPS\Settings::i()->dcma_warning_acknowledgement, true));
+        $form->add(new Form\Interval('dcma_warning_posting_restriction', \IPS\Settings::i()->dcma_warning_posting_restriction ?? -1, false, [
+            'valueAs' => Form\Interval::DAYS,
+            'unlimited' => -1,
+            'unlimitedLang' => 'dcma_warning_posting_restriction_none'
+        ]));
+        $form->add(new Form\Interval('dcma_warning_moderate_content', \IPS\Settings::i()->dcma_warning_moderate_content ?? -1, false, [
+            'valueAs' => Form\Interval::DAYS,
+            'unlimited' => -1,
+            'unlimitedLang' => 'dcma_warning_moderate_content_none'
+        ]));
+        $form->add(new Form\Node('dmca_warning', \IPS\Settings::i()->dmca_warning, false, [
+            'class' => Reason::class
+        ]));
+
+        $form->addTab('dmca_settings_tab_form');
+        $form->addHeader('dmca_settings');
+        $form->add(new Form\Editor('dmca_claim_intro', \IPS\Settings::i()->dmca_claim_intro, false, [
+            'autoSaveKey' => 'dmca_claim_intro',
+            'app' => 'dmca',
+            'key' => 'ClaimIntro'
         ]));
         $form->add(new Form\Editor('dmca_faq', \IPS\Settings::i()->dmca_faq, true, [
             'autoSaveKey' => 'dmca_faq',
             'app' => 'dmca',
             'key' => 'Faq'
-         ]));
+        ]));
         $form->add(new Form\Editor('dmca_final', \IPS\Settings::i()->dmca_final, true, [
             'autoSaveKey' => 'dmca_final',
             'app' => 'dmca',

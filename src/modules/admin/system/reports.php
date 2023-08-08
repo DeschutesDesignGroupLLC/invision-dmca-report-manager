@@ -4,6 +4,7 @@ namespace IPS\dmca\modules\admin\system;
 
 /* To prevent PHP errors (extending class does not exist) revealing path */
 
+use IPS\core\Warnings\Reason;
 use IPS\Helpers\Form;
 
 if (!\defined('\IPS\SUITE_UNIQUE_KEY')) {
@@ -43,7 +44,7 @@ class _reports extends \IPS\Node\Controller
     public function approve()
     {
         $form = new Form('dmca_approval_email', 'dcma_send_mail');
-        $form->add(new Form\Editor('email', \IPS\Settings::i()->dmca_approval_email, true, [
+        $form->add(new Form\Editor('dmca_approval_email', \IPS\Settings::i()->dmca_approval_email, true, [
             'autoSaveKey' => 'dmca_approval_email',
             'app' => 'dmca',
             'key' => 'ApprovalEmail'
@@ -52,7 +53,12 @@ class _reports extends \IPS\Node\Controller
         if ($values = $form->values()) {
             try {
                 $report = \IPS\dmca\Reports\Report::load(\IPS\Request::i()->id);
-                $report->approve($values['email']);
+                $report->approve($values['dmca_approval_email']);
+
+                if ($reason = \IPS\Settings::i()->dmca_warning) {
+                    $reason = Reason::load($reason);
+                    $report->warn($reason);
+                }
             } catch (\OutOfRangeException $exception) {
             }
 
@@ -68,7 +74,7 @@ class _reports extends \IPS\Node\Controller
     public function onhold()
     {
         $form = new Form('dmca_onhold_email', 'dcma_send_mail');
-        $form->add(new Form\Editor('email', \IPS\Settings::i()->dmca_onhold_email, true, [
+        $form->add(new Form\Editor('dmca_onhold_email', \IPS\Settings::i()->dmca_onhold_email, true, [
             'autoSaveKey' => 'dmca_onhold_email',
             'app' => 'dmca',
             'key' => 'OnHoldEmail'
@@ -77,7 +83,7 @@ class _reports extends \IPS\Node\Controller
         if ($values = $form->values()) {
             try {
                 $report = \IPS\dmca\Reports\Report::load(\IPS\Request::i()->id);
-                $report->onhold($values['email']);
+                $report->onhold($values['dmca_onhold_email']);
             } catch (\OutOfRangeException $exception) {
             }
 
@@ -93,7 +99,7 @@ class _reports extends \IPS\Node\Controller
     public function deny()
     {
         $form = new Form('dmca_denied_email', 'dcma_send_mail');
-        $form->add(new Form\Editor('email', \IPS\Settings::i()->dmca_denied_email, true, [
+        $form->add(new Form\Editor('dmca_denied_email', \IPS\Settings::i()->dmca_denied_email, true, [
             'autoSaveKey' => 'dmca_denied_email',
             'app' => 'dmca',
             'key' => 'DeniedEmail'
@@ -102,7 +108,7 @@ class _reports extends \IPS\Node\Controller
         if ($values = $form->values()) {
             try {
                 $report = \IPS\dmca\Reports\Report::load(\IPS\Request::i()->id);
-                $report->deny($values['email']);
+                $report->deny($values['dmca_denied_email']);
             } catch (\OutOfRangeException $exception) {
             }
 

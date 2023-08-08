@@ -11,6 +11,7 @@
 
 namespace IPS\dmca\tasks;
 
+use IPS\core\Warnings\Reason;
 use IPS\Patterns\ActiveRecordIterator;
 
 /* To prevent PHP errors (extending class does not exist) revealing path */
@@ -42,7 +43,18 @@ class _deleteCopyrightClaimContent extends \IPS\Task
             $where[] = ['status = ?', \IPS\dmca\Reports\Report::REPORT_STATUS_SUBMITTED];
 
             foreach (new ActiveRecordIterator(\IPS\Db::i()->select('*', \IPS\dmca\Reports\Report::$databaseTable, $where), 'IPS\dmca\Reports\Report') as $report) {
-                $report->approve(\IPS\Settings::i()->dmca_approval_email);
+                if ($email = \IPS\Settings::i()->dmca_approval_email) {
+                    $report->approve($email);
+                }
+
+                if ($reason = \IPS\Settings::i()->dmca_warning) {
+                    try {
+                        $reason = Reason::load($reason);
+                        $report->warn($reason);
+                    } catch (\OutOfRangeException $exception) {
+                    }
+                }
+
                 $report->deleteItem();
             }
         }

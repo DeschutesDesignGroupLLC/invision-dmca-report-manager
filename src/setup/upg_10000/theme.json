@@ -6,7 +6,8 @@
             "front\/report\/faq",
             "front\/report\/final",
             "front\/report\/form",
-            "front\/report\/wizard"
+            "front\/report\/wizard",
+            "front\/report\/report"
         ],
         "edited": [],
         "removed": []

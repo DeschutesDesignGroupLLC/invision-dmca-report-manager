@@ -1,10 +1,30 @@
 [
     {
+        "key": "dcma_warning_acknowledgement",
+        "default": ""
+    },
+    {
+        "key": "dcma_warning_enable",
+        "default": ""
+    },
+    {
+        "key": "dcma_warning_moderate_content",
+        "default": ""
+    },
+    {
+        "key": "dcma_warning_posting_restriction",
+        "default": ""
+    },
+    {
         "key": "dmca_approval_email",
         "default": ""
     },
     {
         "key": "dmca_automatic_deletion",
+        "default": ""
+    },
+    {
+        "key": "dmca_claim_intro",
         "default": ""
     },
     {
@@ -45,6 +65,10 @@
     },
     {
         "key": "dmca_third_strike_email",
+        "default": ""
+    },
+    {
+        "key": "dmca_warning",
         "default": ""
     }
 ]

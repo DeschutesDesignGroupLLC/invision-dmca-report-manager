@@ -64,7 +64,7 @@ class _history extends \IPS\Dispatcher\Controller
             'item' => function ($val, $row) {
                 $report = Report::load($row['id']);
 
-                if ($link = $report->itemLink()) {
+                if ($report->type !== 'other' && $link = $report->itemLink()) {
                     return "<a href=\"$link\">Item</a>";
                 }
             },

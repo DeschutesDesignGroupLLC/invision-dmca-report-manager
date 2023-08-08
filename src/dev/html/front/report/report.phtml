@@ -1,23 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<theme name="Default" author_name="Invision Power Services, Inc" author_url="https://www.invisioncommunity.com">
- <template template_group="chart" template_name="chart" template_data="$chart" template_location="admin" template_app="dmca"><![CDATA[<div class="ipsPadding_left">
-    {$chart|raw}
-</div>]]></template>
- <template template_group="history" template_name="badge" template_data="$text, $class = 'ipsBadge_positive'" template_location="admin" template_app="dmca"><![CDATA[<span class="ipsBadge {$class}">{$text}</span>
-]]></template>
- <template template_group="report" template_name="faq" template_data="$faq = null" template_location="front" template_app="dmca"><![CDATA[<div class="ipsPad">
-    {$faq|raw}
-</div>
-]]></template>
- <template template_group="report" template_name="final" template_data="$final = null" template_location="front" template_app="dmca"><![CDATA[<div class="ipsPad">
-    {$final|raw}
-</div>
-]]></template>
- <template template_group="report" template_name="form" template_data="$form = null" template_location="front" template_app="dmca"><![CDATA[<div class="ipsPad">
-    {$form|raw}
-</div>
-]]></template>
- <template template_group="report" template_name="report" template_data="$report = null" template_location="front" template_app="dmca"><![CDATA[<div style="font-family: 'Helvetica Neue', helvetica, sans-serif; font-size: 14px; vertical-align: top; font-weight: bold; margin-bottom: 2px;">Claim Details:</div>
+<ips:template parameters="$report = null" />
+<div style="font-family: 'Helvetica Neue', helvetica, sans-serif; font-size: 14px; vertical-align: top; font-weight: bold; margin-bottom: 2px;">Claim Details:</div>
 <table width="100%" cellpadding="15" cellspacing="0" border="0" style="background: #f9f9f9;">
     <tbody>
         <tr>
@@ -104,16 +86,4 @@
         </td>
     </tr>
     </tbody>
-</table>]]></template>
- <template template_group="report" template_name="wizard" template_data="$wizard" template_location="front" template_app="dmca"><![CDATA[<div class="ipsSpacer_bottom">
-    <h1 class="ipsType_pageTitle">DMCA Copyright Claim</h1>
-    <div class="ipsType_richText ipsType_normal">
-        File a new copyright claim.
-    </div>
-</div>
-<div class="ipsBox">
-    <h2 class="ipsType_sectionTitle ipsType_reset">New Report</h2>
-    {$wizard|raw}
-</div>
-]]></template>
-</theme>
+</table>

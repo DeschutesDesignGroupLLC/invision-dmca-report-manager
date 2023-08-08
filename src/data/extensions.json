@@ -2,6 +2,7 @@
     "core": {
         "EditorLocations": {
             "ApprovalEmail": "IPS\\dmca\\extensions\\core\\EditorLocations\\ApprovalEmail",
+            "ClaimIntro": "IPS\\dmca\\extensions\\core\\EditorLocations\\ClaimIntro",
             "DeletedEmail": "IPS\\dmca\\extensions\\core\\EditorLocations\\DeletedEmail",
             "DeniedEmail": "IPS\\dmca\\extensions\\core\\EditorLocations\\DeniedEmail",
             "Faq": "IPS\\dmca\\extensions\\core\\EditorLocations\\Faq",

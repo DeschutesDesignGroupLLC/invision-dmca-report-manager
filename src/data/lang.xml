@@ -27,20 +27,41 @@
   <word key="mailsub__dmca_deleted" js="0">The item in your copyright claim has been deleted</word>
   <word key="r__reports" js="0">Reports</word>
   <word key="r__reports_manage" js="0">Can manage reports?</word>
-  <word key="dmca_wizard_faq" js="0">Frequently Asked Questions</word>
+  <word key="dmca_wizard_faq" js="0">Start</word>
   <word key="dmca_wizard_faq_read" js="0">I have read the Frequently Asked Questions.</word>
   <word key="dmca_wizard_faq_error" js="0">Please read the Frequently Asked Questions and select the checkbox before proceeding.</word>
   <word key="dmca_wizard_report" js="0">File A Report</word>
+  <word key="dmca_wizard_report_error" js="0">Please check the I Understand And Agree checkbox before proceeding.</word>
   <word key="dmca_wizard_report_submit" js="0">File Claim</word>
   <word key="dmca_wizard_final" js="0">Final Steps</word>
   <word key="dmca_settings" js="0">Settings</word>
-  <word key="dmca_settings_tab_claims" js="0">Claims</word>
+  <word key="dmca_settings_tab_claims" js="0">Claims Management</word>
   <word key="dmca_settings_tab_notifications" js="0">Claimant Notifications</word>
+  <word key="dmca_settings_tab_form" js="0">Claim Form</word>
+  <word key="dmca_settings_groups" js="0">Groups</word>
   <word key="dmca_automatic_deletion" js="0">Automatic Claim Deletion</word>
   <word key="dmca_automatic_deletion_desc" js="0">Automatically delete claimed copyright infringement items after a certain period when the claim status is set to Submitted.</word>
+  <word key="dmca_warning_points" js="0">Warning Points</word>
+  <word key="dmca_warning_points_desc" js="0">Apply an amount of warning points each time a member receives a copyright infringement strike.</word>
+  <word key="dmca_settings_warnings" js="0">Warnings</word>
+  <word key="dcma_warning_enable" js="0">Enable Warnings</word>
+  <word key="dcma_warning_enable_desc" js="0">Give a member a warning with each copyright claim infringement.</word>
+  <word key="dcma_warning_acknowledgement" js="0">Require Warning Acknowledgement</word>
+  <word key="dcma_warning_acknowledgement_desc" js="0">Require the member acknowledge the warning before they can post again.</word>
+  <word key="dcma_warning_posting_restriction" js="0">Posting Restriction</word>
+  <word key="dcma_warning_posting_restriction_desc" js="0">Restrict the member from posting for a specified time when receiving a copyright infringement strike.</word>
+  <word key="dcma_warning_posting_restriction_none" js="0">Do Not Restrict Posting</word>
+  <word key="dcma_warning_moderate_content" js="0">Moderate Content</word>
+  <word key="dcma_warning_moderate_content_desc" js="0">Moderate the member's content for a specified time when receiving a copyright infringement strike.</word>
+  <word key="dcma_warning_moderate_content_none" js="0">Do Not Moderate Content</word>
+  <word key="dmca_warning" js="0">Warning Reason</word>
+  <word key="dmca_warning_desc" js="0">The warning reason that is applied when a member receives a copyright infringement strike.</word>
   <word key="dmca_group" js="0">Infringing Group</word>
-  <word key="dmca_group_desc" js="0">The group the member will be moved to when they receive their third strike.</word>
+  <word key="dmca_group_desc" js="0">The group the member will be moved to when they receive their third strike. Select none to not move a member.</word>
+  <word key="dmca_claim_intro" js="0">Claim Form Intro</word>
+  <word key="dmca_claim_intro_desc" js="0">Text that will be shown above the claim submission form.</word>
   <word key="dmca_faq" js="0">Frequently Asked Questions</word>
+  <word key="dmca_faq_desc" js="0">Text that will be shown on the first page when filing a new claim.</word>
   <word key="dmca_final" js="0">Final Steps</word>
   <word key="dmca_final_desc" js="0">Enter some text that will shown to the member after they file a claim.</word>
   <word key="dmca_approval_email" js="0">Default Claim Approved Email</word>
@@ -57,11 +78,12 @@
   <word key="dmca_first_strike_email" js="0">First Strike Email</word>
   <word key="dmca_second_strike_email" js="0">Second Strike Email</word>
   <word key="dmca_third_strike_email" js="0">Third Strike Email</word>
-  <word key="name" js="0">Full Name</word>
-  <word key="email" js="0">Email</word>
+  <word key="name" js="0">Your Full Name</word>
+  <word key="copyright_name" js="0">Copyright Holder's Full Name</word>
+  <word key="email" js="0">Your Email Address</word>
   <word key="title" js="0">Title</word>
-  <word key="company" js="0">Company</word>
-  <word key="phone" js="0">Phone Number</word>
+  <word key="company" js="0">Company Name</word>
+  <word key="phone" js="0">Telephone</word>
   <word key="member_id" js="0">Infringing Member</word>
   <word key="member_id_desc" js="0">The member responsible for posting the copyrighted material.</word>
   <word key="type" js="0">Content Type</word>
@@ -70,8 +92,12 @@
   <word key="item_desc" js="0">Select the item containing the copyrighted material. You must submit a report for each claimed item.</word>
   <word key="urls" js="0">Infringing URLs</word>
   <word key="urls_desc" js="0">Post a link of each URL containing the copyrighted material.</word>
-  <word key="description" js="0">Description of Original Work</word>
+  <word key="description" js="0">Describe The Original Work</word>
   <word key="description_desc" js="0">Describe the copyrighted material in full detail, including links to the original work or evidence of source material.</word>
+  <word key="accept_terms" js="0">I Understand And Agree</word>
+  <word key="accept_terms_desc" js="0">By checking this box, you attest, under penalty of perjury, that you have a good faith belief that use of the material in this report is not authorized by the copyright owner, its agent, or the law; AND you are authorized to act on behalf of the copyright owner; AND you understand, under 17 U.S.C. § 512(f), you may be liable for any damages, including costs and attorneys' fees, if you knowingly materially misrepresent reported material.</word>
+  <word key="signature" js="0">Digital Signature</word>
+  <word key="signature_desc" js="0">By entering your name, you affirm all information is true and accurate while agreeing to the policies on this page.</word>
   <word key="report_id" js="0">Report</word>
   <word key="created_at" js="0">Created At</word>
   <word key="dmca_reports_id" js="0">ID</word>

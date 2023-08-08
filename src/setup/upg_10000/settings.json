@@ -11,7 +11,13 @@
         "dmca_onhold_email",
         "dmca_second_strike_email",
         "dmca_submitted_email",
-        "dmca_third_strike_email"
+        "dmca_third_strike_email",
+        "dcma_warning_acknowledgement",
+        "dcma_warning_enable",
+        "dcma_warning_moderate_content",
+        "dcma_warning_posting_restriction",
+        "dmca_claim_intro",
+        "dmca_warning"
     ],
     "edited": [],
     "removed": []
