@@ -2,13 +2,25 @@
 
 namespace IPS\dmca\Reports;
 
+use IPS\Application;
 use IPS\core\Warnings\Reason;
 use IPS\core\Warnings\Warning;
+use IPS\DateTime;
+use IPS\Db;
 use IPS\Email;
 use IPS\forums\Topic;
+use IPS\forums\Topic\Post;
+use IPS\gallery\Album;
+use IPS\gallery\Image;
+use IPS\Helpers\Form\Address;
 use IPS\Helpers\Form\Checkbox;
 use IPS\Helpers\Form\Editor;
-use IPS\Helpers\Form\Select;
+use IPS\Helpers\Form\Stack;
+use IPS\Helpers\Form\Text;
+use IPS\Http\Url;
+use IPS\Member;
+use IPS\Notification;
+use IPS\Settings;
 
 class _Report extends \IPS\Node\Model implements \Stringable
 {
@@ -85,7 +97,7 @@ class _Report extends \IPS\Node\Model implements \Stringable
      */
     protected function get__description()
     {
-        return 'Updated At: ' . \IPS\DateTime::ts($this->updated_at);
+        return 'Updated At: ' . DateTime::ts($this->updated_at);
     }
 
     /**
@@ -107,45 +119,37 @@ class _Report extends \IPS\Node\Model implements \Stringable
      */
     public function form(&$form)
     {
-        if (\IPS\Settings::i()->dmca_claim_intro && \IPS\Dispatcher::i()->controllerLocation === 'front') {
-            $form->addHtml(\IPS\Settings::i()->dmca_claim_intro);
+        if (Settings::i()->dmca_claim_intro && \IPS\Dispatcher::i()->controllerLocation === 'front') {
+            $form->addHtml(Settings::i()->dmca_claim_intro);
         }
 
-        $form->add(new \IPS\Helpers\Form\Text('name', $this->name ? $this->name : \IPS\Member::loggedIn()->name, true));
-        $form->add(new \IPS\Helpers\Form\Text('copyright_name', $this->copyright_name ?? null, true, [
+        $form->add(new Text('name', $this->name ? $this->name : Member::loggedIn()->name, true));
+        $form->add(new Text('copyright_name', $this->copyright_name ?? null, true, [
             'placeholder' => 'You must be the rights holder or and authorized agent thereof'
         ]));
-        $form->add(new \IPS\Helpers\Form\Email('email', $this->email ? $this->email : \IPS\Member::loggedIn()->email, true));
-        $form->add(new \IPS\Helpers\Form\Text('title', $this->title ?? null, false));
-        $form->add(new \IPS\Helpers\Form\Text('company', $this->company ?? null, false));
-        $form->add(new \IPS\Helpers\Form\Text('phone', $this->phone ?? null, true));
-        $form->add(new \IPS\Helpers\Form\Address('address', $this->address ? \IPS\GeoLocation::buildFromJson($this->address) : null, true));
-        $form->add(new \IPS\Helpers\Form\Member('member_id', $this->member_id ? \IPS\Member::load($this->member_id) : null, true));
-        $form->add(new Select('type', $this->type ?? null, true, [
-            'options' => [
-                Topic::class => 'Forum Topic',
-                'other' => 'Other'
-            ],
-            'toggles' => [
-                Topic::class => ['topic'],
-                'other' => ['other']
-            ]
-        ]));
-        $form->add(new \IPS\Helpers\Form\Item('item', $this->item ?? null, true, [
-            'class' => '\IPS\forums\Topic',
-            'maxItems' => 50
-        ], null, null, null, 'topic'));
-        $form->add(new \IPS\Helpers\Form\Stack('url', $this->url ? explode(',', $this->url) : null, true, [
+        $form->add(new \IPS\Helpers\Form\Email('email', $this->email ? $this->email : Member::loggedIn()->email, true));
+        $form->add(new Text('title', $this->title ?? null, false));
+        $form->add(new Text('company', $this->company ?? null, false));
+        $form->add(new Text('phone', $this->phone ?? null, true));
+        $form->add(new Address('address', $this->address ? \IPS\GeoLocation::buildFromJson($this->address) : null, true));
+        $form->add(new Stack('urls', $this->urls ? explode(',', $this->urls) : null, true, [
             'stackFieldType' => 'Url',
             'maxItems' => 50
-        ], null, null, null, 'other'));
+        ], function ($url) {
+            $urls = is_array($url) ? $url : [$url];
+            foreach ($urls as $url) {
+                if (!self::findContentItem($url)) {
+                    throw new \DomainException('dmca_cant_find_item');
+                }
+            }
+        }, null, null, 'other'));
         $form->add(new Editor('description', $this->description ?? null, true, [
             'app' => 'dmca',
             'key' => 'ReportDescription',
             'autoSaveKey' => 'dmca_report',
         ]));
         $form->add(new Checkbox('accept_terms', false, true));
-        $form->add(new \IPS\Helpers\Form\Text('signature', $this->signature ?? null, true, [
+        $form->add(new Text('signature', $this->signature ?? null, true, [
             'placeholder' => 'Enter your name to sign this submission'
         ]));
     }
@@ -158,19 +162,7 @@ class _Report extends \IPS\Node\Model implements \Stringable
      */
     public function formatFormValues($values)
     {
-        $values['member_id'] = $values['member_id']?->member_id;
         $values['address']	= json_encode($values['address']);
-
-        if ($values['item'] && is_array($values['item'])) {
-            $item = reset($values['item']);
-
-            if (is_object($item)) {
-                $class = get_class($item);
-                $idColumn = $class::$databaseColumnId;
-
-                $values['item'] = $item->$idColumn;
-            }
-        }
 
         return $values;
     }
@@ -180,18 +172,18 @@ class _Report extends \IPS\Node\Model implements \Stringable
      */
     public function save()
     {
-        $this->updated_at = \IPS\DateTime::create()->getTimestamp();
+        $this->updated_at = DateTime::create()->getTimestamp();
 
         if ($this->_new) {
-            $this->created_at = \IPS\DateTime::create()->getTimestamp();
+            $this->created_at = DateTime::create()->getTimestamp();
 
-            $member = \IPS\Member::load($this->email, 'email');
+            $member = Member::load($this->email, 'email');
             if ($member && $member->member_id) {
-                $notification = new \IPS\Notification(\IPS\Application::load('dmca'), 'submitted', null, [\IPS\Settings::i()->dmca_submitted_email, $this]);
+                $notification = new Notification(Application::load('dmca'), 'submitted', null, [Settings::i()->dmca_submitted_email, $this]);
                 $notification->recipients->attach($member);
                 $notification->send();
             } else {
-                \IPS\Email::buildFromTemplate('dmca', 'submitted', [$this->name, \IPS\Settings::i()->dmca_submitted_email, $this], Email::TYPE_TRANSACTIONAL)->send($this->email);
+                Email::buildFromTemplate('dmca', 'submitted', [$this->name, Settings::i()->dmca_submitted_email, $this], Email::TYPE_TRANSACTIONAL)->send($this->email);
             }
         }
 
@@ -199,50 +191,58 @@ class _Report extends \IPS\Node\Model implements \Stringable
     }
 
     /**
-     * @return Topic|null
+     * @param $url
+     * @return mixed|null
      */
-    public function item()
+    public static function findContentItem($url)
     {
-        try {
-            return match (true) {
-                $this->type === Topic::class => Topic::load($this->item),
-                default => null
-            };
-        } catch (\OutOfRangeException $exception) {
-            return null;
+        if (!$url instanceof Url) {
+            $url = Url::createFromString($url);
         }
 
-    }
+        $classes = [];
+        if (isset($url->hiddenQueryString['app'])) {
+            $classes = match ($url->hiddenQueryString['app']) {
+                'forums' => [Topic::class, Post::class],
+                'gallery' => [Image::class, Album::class],
+            };
+        }
 
-    /**
-     * @return \IPS\Http\Url|null
-     */
-    public function itemLink()
-    {
-        return match (true) {
-            $this->item() instanceof Topic => $this->item()->url(),
-            $this->type === 'other' => $this->url,
-            default => null
-        };
+        foreach ($classes as $class) {
+            try {
+                return $class::loadFromUrl($url);
+            } catch (\OutOfRangeException|\InvalidArgumentException $exception) {
+            }
+        }
+
+        return null;
     }
 
     /**
      * @return null
      */
-    public function deleteItem()
+    public function deleteItems()
     {
-        match (true) {
-            $this->item() instanceof Topic => $this->item()->delete(),
-            default => null
-        };
+        $urls = explode(',', $this->urls);
 
-        $member = \IPS\Member::load($this->email, 'email');
+        foreach ($urls as $url) {
+            try {
+                $item = self::findContentItem($url);
+                if ($item) {
+                    $item->delete();
+                }
+            } catch (\Exception $exception) {
+
+            }
+        }
+
+        $member = Member::load($this->email, 'email');
         if ($member && $member->member_id) {
-            $notification = new \IPS\Notification(\IPS\Application::load('dmca'), 'deleted', null, [\IPS\Settings::i()->dmca_deleted_email, $this]);
+            $notification = new Notification(Application::load('dmca'), 'deleted', null, [Settings::i()->dmca_deleted_email, $this]);
             $notification->recipients->attach($member);
             $notification->send();
         } else {
-            \IPS\Email::buildFromTemplate('dmca', 'deleted', [$this->name, \IPS\Settings::i()->dmca_deleted_email, $this], Email::TYPE_TRANSACTIONAL)->send($this->email);
+            Email::buildFromTemplate('dmca', 'deleted', [$this->name, Settings::i()->dmca_deleted_email, $this], Email::TYPE_TRANSACTIONAL)->send($this->email);
         }
 
         return null;
@@ -257,45 +257,67 @@ class _Report extends \IPS\Node\Model implements \Stringable
         $this->status = \IPS\dmca\Reports\Report::REPORT_STATUS_APPROVED;
         $this->save();
 
-        $member = \IPS\Member::load($this->email, 'email');
+        $member = Member::load($this->email, 'email');
         if ($member && $member->member_id) {
-            $notification = new \IPS\Notification(\IPS\Application::load('dmca'), 'approved', null, [$emailMessage, $this]);
+            $notification = new Notification(Application::load('dmca'), 'approved', null, [$emailMessage, $this]);
             $notification->recipients->attach($member);
             $notification->send();
         } else {
-            \IPS\Email::buildFromTemplate('dmca', 'approved', [$this->name, $emailMessage, $this], Email::TYPE_TRANSACTIONAL)->send($this->email);
+            Email::buildFromTemplate('dmca', 'approved', [$this->name, $emailMessage, $this], Email::TYPE_TRANSACTIONAL)->send($this->email);
         }
 
-        $infringingMember = \IPS\Member::load($this->member_id);
-        if ($infringingMember && $infringingMember->member_id) {
-            if ($infringingMember->copyright_strikes == 1) {
-                $notification = new \IPS\Notification(\IPS\Application::load('dmca'), 'firststrike', null, [\IPS\Settings::i()->dmca_first_strike_email]);
-                $notification->recipients->attach($infringingMember);
-                $notification->send();
-            } elseif ($infringingMember->copyright_strikes == 2) {
-                $notification = new \IPS\Notification(\IPS\Application::load('dmca'), 'secondstrike', null, [\IPS\Settings::i()->dmca_second_strike_email]);
-                $notification->recipients->attach($infringingMember);
-                $notification->send();
-            } else {
-                $notification = new \IPS\Notification(\IPS\Application::load('dmca'), 'thirdstrike', null, [\IPS\Settings::i()->dmca_third_strike_email]);
-                $notification->recipients->attach($infringingMember);
-                $notification->send();
+        $urls = explode(',', $this->urls);
 
-                if (\IPS\Settings::i()->dmca_group) {
-                    $groups = explode(',', $infringingMember->mgroup_others);
-                    $groupsToAdd = explode(',', \IPS\Settings::i()->dmca_group);
-                    $newGroups = array_filter(array_unique(array_merge($groups, $groupsToAdd)));
+        $emailAndWarningProcessed = [];
+        foreach ($urls as $url) {
+            $item = self::findContentItem($url);
 
-                    $infringingMember->mgroup_others = implode(',', $newGroups);
-                    $infringingMember->save();
+            if (\is_object($item) && method_exists($item, 'author')) {
+                $infringingMember = $item->author();
+
+                if ($infringingMember && $infringingMember->member_id && !\in_array($infringingMember->member_id, $emailAndWarningProcessed)) {
+                    Db::i()->insert(Strike::$databaseTable, [
+                        'report_id' => $this->id,
+                        'member_id' => $infringingMember->member_id
+                    ]);
+
+                    if ($infringingMember->copyright_strikes == 1) {
+                        $notification = new Notification(Application::load('dmca'), 'firststrike', null, [Settings::i()->dmca_first_strike_email]);
+                        $notification->recipients->attach($infringingMember);
+                        $notification->send();
+                    } elseif ($infringingMember->copyright_strikes == 2) {
+                        $notification = new Notification(Application::load('dmca'), 'secondstrike', null, [Settings::i()->dmca_second_strike_email]);
+                        $notification->recipients->attach($infringingMember);
+                        $notification->send();
+                    } else {
+                        $notification = new Notification(Application::load('dmca'), 'thirdstrike', null, [Settings::i()->dmca_third_strike_email]);
+                        $notification->recipients->attach($infringingMember);
+                        $notification->send();
+
+                        if (Settings::i()->dmca_group) {
+                            $groups = explode(',', $infringingMember->mgroup_others);
+                            $groupsToAdd = explode(',', Settings::i()->dmca_group);
+                            $newGroups = array_filter(array_unique(array_merge($groups, $groupsToAdd)));
+
+                            $infringingMember->mgroup_others = implode(',', $newGroups);
+                            $infringingMember->save();
+                        }
+                    }
+
+                    if ($reason = \IPS\Settings::i()->dmca_warning) {
+                        try {
+                            $reason = Reason::load($reason);
+                            $this->warn($reason, $infringingMember);
+                        } catch (\Exception $exception) {
+                        }
+                    }
+
+                    $emailAndWarningProcessed[] = $infringingMember->member_id;
                 }
             }
-
-            if (\IPS\Settings::i()->dmca_warning_points && \IPS\Settings::i()->dmca_warning_points > 0) {
-                $infringingMember->warn_level += \IPS\Settings::i()->dmca_warning_points;
-                $infringingMember->save();
-            }
         }
+
+        $this->deleteItems();
 
         return $this;
     }
@@ -309,13 +331,13 @@ class _Report extends \IPS\Node\Model implements \Stringable
         $this->status = \IPS\dmca\Reports\Report::REPORT_STATUS_ON_HOLD;
         $this->save();
 
-        $member = \IPS\Member::load($this->email, 'email');
+        $member = Member::load($this->email, 'email');
         if ($member && $member->member_id) {
-            $notification = new \IPS\Notification(\IPS\Application::load('dmca'), 'onhold', null, [$emailMessage, $this]);
+            $notification = new Notification(Application::load('dmca'), 'onhold', null, [$emailMessage, $this]);
             $notification->recipients->attach($member);
             $notification->send();
         } else {
-            \IPS\Email::buildFromTemplate('dmca', 'onhold', [$this->name, $emailMessage, $this], Email::TYPE_TRANSACTIONAL)->send($this->email);
+            Email::buildFromTemplate('dmca', 'onhold', [$this->name, $emailMessage, $this], Email::TYPE_TRANSACTIONAL)->send($this->email);
         }
 
         return $this;
@@ -330,57 +352,67 @@ class _Report extends \IPS\Node\Model implements \Stringable
         $this->status = \IPS\dmca\Reports\Report::REPORT_STATUS_DENIED;
         $this->save();
 
-        $member = \IPS\Member::load($this->email, 'email');
+        $member = Member::load($this->email, 'email');
         if ($member && $member->member_id) {
-            $notification = new \IPS\Notification(\IPS\Application::load('dmca'), 'denied', null, [$emailMessage, $this]);
+            $notification = new Notification(Application::load('dmca'), 'denied', null, [$emailMessage, $this]);
             $notification->recipients->attach($member);
             $notification->send();
         } else {
-            \IPS\Email::buildFromTemplate('dmca', 'denied', [$this->name, $emailMessage, $this], Email::TYPE_TRANSACTIONAL)->send($this->email);
+            Email::buildFromTemplate('dmca', 'denied', [$this->name, $emailMessage, $this], Email::TYPE_TRANSACTIONAL)->send($this->email);
         }
 
         return $this;
     }
 
     /**
-     * @param Reason|null $reason
+     * @param Reason $reason
+     * @param Member $infringingMember
      * @return Warning
+     * @throws \Exception
      */
-    public function warn(Reason $reason)
+    public function warn(Reason $reason, Member $infringingMember)
     {
-        $infringingMember = \IPS\Member::load($this->member_id);
-
         $warning = new Warning();
         $warning->member = $infringingMember->member_id;
-        $warning->moderator = \IPS\Member::loggedIn()->member_id;
-        $warning->date = \IPS\DateTime::create()->getTimestamp();
+        $warning->moderator = Member::loggedIn()->member_id;
+        $warning->date = DateTime::create()->getTimestamp();
         $warning->reason = $reason->id;
         $warning->points = $reason->points;
         $warning->note_member = $reason->notes;
         $warning->note_mods = null;
-        $warning->acknowledged = !\IPS\Settings::i()->dcma_warning_acknowledgement;
+        $warning->acknowledged = !Settings::i()->dcma_warning_acknowledgement;
         $warning->expire_date = -1;
         $warning->cheev_point_reduction = 0;
 
-        $postingRestriction = \IPS\Settings::i()->dcma_warning_posting_restriction;
+        $postingRestriction = Settings::i()->dcma_warning_posting_restriction;
         if ($postingRestriction && $postingRestriction !== '-1') {
             $interval = 'P'.$postingRestriction.'D';
-            $infringingMember->restrict_post = \IPS\DateTime::create()->add(new \DateInterval($interval))->getTimestamp();
+            $infringingMember->restrict_post = DateTime::create()->add(new \DateInterval($interval))->getTimestamp();
             $warning->rpa = $interval;
         }
 
-        $moderateContent = \IPS\Settings::i()->dcma_warning_moderate_content;
+        $moderateContent = Settings::i()->dcma_warning_moderate_content;
         if ($moderateContent && $moderateContent !== '-1') {
             $interval = 'P'.$moderateContent.'D';
-            $infringingMember->mod_posts = \IPS\DateTime::create()->add(new \DateInterval($interval))->getTimestamp();
+            $infringingMember->mod_posts = DateTime::create()->add(new \DateInterval($interval))->getTimestamp();
             $warning->mq = $interval;
         }
 
-        $infringingMember->members_bitoptions['unacknowledged_warnings'] = (bool) \IPS\Settings::i()->dcma_warning_acknowledgement;
+        $infringingMember->members_bitoptions['unacknowledged_warnings'] = (bool) Settings::i()->dcma_warning_acknowledgement;
         $infringingMember->save();
         $warning->save();
 
         return $warning;
+    }
+
+    /**
+     * @return void
+     */
+    public function delete()
+    {
+        Db::i()->delete(Strike::$databaseTable, ['report_id=?', $this->id]);
+
+        parent::delete();
     }
 
     /**

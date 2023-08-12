@@ -4,7 +4,6 @@ namespace IPS\dmca\modules\admin\system;
 
 /* To prevent PHP errors (extending class does not exist) revealing path */
 
-use IPS\core\Warnings\Reason;
 use IPS\Helpers\Form;
 
 if (!\defined('\IPS\SUITE_UNIQUE_KEY')) {
@@ -43,7 +42,10 @@ class _reports extends \IPS\Node\Controller
      */
     public function approve()
     {
+        \IPS\Request::i()->confirmedDelete('dmca_approve_title', 'dmca_approve_message', 'dmca_approve_submit');
+
         $form = new Form('dmca_approval_email', 'dcma_send_mail');
+        $form->hiddenValues['wasConfirmed'] = 1;
         $form->add(new Form\Editor('dmca_approval_email', \IPS\Settings::i()->dmca_approval_email, true, [
             'autoSaveKey' => 'dmca_approval_email',
             'app' => 'dmca',
@@ -54,11 +56,6 @@ class _reports extends \IPS\Node\Controller
             try {
                 $report = \IPS\dmca\Reports\Report::load(\IPS\Request::i()->id);
                 $report->approve($values['dmca_approval_email']);
-
-                if ($reason = \IPS\Settings::i()->dmca_warning) {
-                    $reason = Reason::load($reason);
-                    $report->warn($reason);
-                }
             } catch (\OutOfRangeException $exception) {
             }
 

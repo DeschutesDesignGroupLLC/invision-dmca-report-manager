@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language>
- <app key="dmca" version="10000">
+ <app key="dmca" version="10001">
   <word key="__app_dmca" js="0">DMCA Copyright Claim Manager</word>
   <word key="menutab__dmca" js="0">DMCA Manager</word>
   <word key="menutab__dmca_icon" js="0">flag</word>
@@ -17,9 +17,9 @@
   <word key="mailsub__dmca_notification_onhold" js="0">Your copyright claim was placed on hold</word>
   <word key="mailsub__dmca_notification_denied" js="0">Your copyright claim was denied</word>
   <word key="mailsub__dmca_notification_deleted" js="0">The item in your copyright claim has been deleted</word>
-  <word key="mailsub__dmca_notification_firststrike" js="0">A copyright claim has been filed against some content you posted. This is your first strike.</word>
-  <word key="mailsub__dmca_notification_secondstrike" js="0">A copyright claim has been filed against some content you posted. This is your second strike.</word>
-  <word key="mailsub__dmca_notification_thirdstrike" js="0">A copyright claim has been filed against some content you posted. This is your third and last strike.</word>
+  <word key="mailsub__dmca_notification_firststrike" js="0">A copyright claim has been filed against some content you posted - first strike</word>
+  <word key="mailsub__dmca_notification_secondstrike" js="0">A copyright claim has been filed against some content you posted - second strike</word>
+  <word key="mailsub__dmca_notification_thirdstrike" js="0">A copyright claim has been filed against some content you posted - last strike</word>
   <word key="mailsub__dmca_submitted" js="0">Your copyright claim was submitted</word>
   <word key="mailsub__dmca_approved" js="0">Your copyright claim was approved</word>
   <word key="mailsub__dmca_onhold" js="0">Your copyright claim was placed on hold</word>
@@ -84,12 +84,6 @@
   <word key="title" js="0">Title</word>
   <word key="company" js="0">Company Name</word>
   <word key="phone" js="0">Telephone</word>
-  <word key="member_id" js="0">Infringing Member</word>
-  <word key="member_id_desc" js="0">The member responsible for posting the copyrighted material.</word>
-  <word key="type" js="0">Content Type</word>
-  <word key="type_desc" js="0">Select the type of content that contains the copyrighted material.</word>
-  <word key="item" js="0">Content Item</word>
-  <word key="item_desc" js="0">Select the item containing the copyrighted material. You must submit a report for each claimed item.</word>
   <word key="urls" js="0">Infringing URLs</word>
   <word key="urls_desc" js="0">Post a link of each URL containing the copyrighted material.</word>
   <word key="description" js="0">Describe The Original Work</word>
@@ -116,11 +110,15 @@
   <word key="dmca_report_on_hold" js="0">On Hold</word>
   <word key="dmca_report_deleted" js="0">Deleted</word>
   <word key="dmca_approve" js="0">Approve</word>
+  <word key="dmca_approve_title" js="0">Are you sure you want to approve this claim?</word>
+  <word key="dmca_approve_message" js="0">This will delete the reported items and apply all the configured penalties to the infringing member.</word>
+  <word key="dmca_approve_submit" js="0">Proceed To Next Step</word>
   <word key="dmca_deny" js="0">Deny</word>
   <word key="dmca_on_hold" js="0">Place On Hold</word>
   <word key="dmca_delete" js="0">Delete</word>
   <word key="dcma_send_mail" js="0">Send Email</word>
   <word key="dcma_chart_infringements" js="0">Infringements</word>
   <word key="dcma_chart_infringements_title" js="0">Copyright Infringements For Member</word>
+  <word key="dmca_cant_find_item" js="0">One of the URLs you provided is not valid. Please try again.</word>
  </app>
 </language>

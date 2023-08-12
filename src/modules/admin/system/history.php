@@ -40,7 +40,7 @@ class _history extends \IPS\Dispatcher\Controller
     protected function manage()
     {
         $table = new \IPS\Helpers\Table\Db(\IPS\dmca\Reports\Report::$databaseTable, \IPS\Http\Url::internal('app=dmca&module=system&controller=history'));
-        $table->include = ['id', 'name', 'email', 'member_id', 'report', 'item', 'created_at', 'status', 'automation'];
+        $table->include = ['id', 'name', 'email', 'report', 'created_at', 'status', 'automation'];
         $table->langPrefix = 'dmca_reports_';
         $table->quickSearch = [['name', 'email'], 'name'];
         $table->sortBy = $table->sortBy ?: 'created_at';
@@ -54,19 +54,9 @@ class _history extends \IPS\Dispatcher\Controller
         );
 
         $table->parsers = array(
-            'member_id' => function ($val) {
-                return \IPS\Member::load($val)->link();
-            },
             'report' => function ($val, $row) {
                 $url = Url::internal("app=dmca&module=system&controller=reports&do=form&id={$row['id']}");
                 return "<a href=\"$url\">Report</a>";
-            },
-            'item' => function ($val, $row) {
-                $report = Report::load($row['id']);
-
-                if ($report->type !== 'other' && $link = $report->itemLink()) {
-                    return "<a href=\"$link\">Item</a>";
-                }
             },
             'created_at' => function ($val, $row) {
                 return \IPS\DateTime::ts($val)->html();
@@ -94,8 +84,8 @@ class _history extends \IPS\Dispatcher\Controller
                 $report = Report::load($row['id']);
 
                 return match (true) {
-                    $report->status === Report::REPORT_STATUS_SUBMITTED && $report->item() => \IPS\Theme::i()->getTemplate('history', 'dmca', 'admin')->badge('Automatic Removal Pending', 'ipsBadge_warning'),
-                    $report->status === Report::REPORT_STATUS_APPROVED && (!$report->item() || $report->type === 'other') => \IPS\Theme::i()->getTemplate('history', 'dmca', 'admin')->badge('Content Deleted', 'ipsBadge_positive'),
+                    $report->status === Report::REPORT_STATUS_SUBMITTED => \IPS\Theme::i()->getTemplate('history', 'dmca', 'admin')->badge('Automatic Removal Pending', 'ipsBadge_warning'),
+                    $report->status === Report::REPORT_STATUS_APPROVED => \IPS\Theme::i()->getTemplate('history', 'dmca', 'admin')->badge('Content Deleted', 'ipsBadge_positive'),
                     $report->status === Report::REPORT_STATUS_DENIED => \IPS\Theme::i()->getTemplate('history', 'dmca', 'admin')->badge('Content Preserved', 'ipsBadge_negative'),
                     default => \IPS\Theme::i()->getTemplate('history', 'dmca', 'admin')->badge('Manual Removal Required', 'ipsBadge_intermediary')
                 };
@@ -114,12 +104,7 @@ class _history extends \IPS\Dispatcher\Controller
                 $return['approve'] = [
                     'icon' => 'check-circle',
                     'title' => 'dmca_approve',
-                    'link' => \IPS\Http\Url::internal("app=dmca&module=system&controller=reports&do=approve&id=$report->id")->csrf(),
-                    'data' => [
-                        'ipsDialog' => '',
-                        'ipsDialog-title' => \IPS\Member::loggedIn()->language()->addToStack('dcma_send_mail'),
-                        'ipsDialog-flashmessage' => \IPS\Member::loggedIn()->language()->addToStack('dmca_report_approved')
-                    ]
+                    'link' => \IPS\Http\Url::internal("app=dmca&module=system&controller=reports&do=approve&id=$report->id")
                 ];
             }
 

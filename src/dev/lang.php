@@ -23,9 +23,9 @@ $lang = array(
     'mailsub__dmca_notification_onhold' => 'Your copyright claim was placed on hold',
     'mailsub__dmca_notification_denied' => 'Your copyright claim was denied',
     'mailsub__dmca_notification_deleted' => 'The item in your copyright claim has been deleted',
-    'mailsub__dmca_notification_firststrike' => 'A copyright claim has been filed against some content you posted. This is your first strike.',
-    'mailsub__dmca_notification_secondstrike' => 'A copyright claim has been filed against some content you posted. This is your second strike.',
-    'mailsub__dmca_notification_thirdstrike' => 'A copyright claim has been filed against some content you posted. This is your third and last strike.',
+    'mailsub__dmca_notification_firststrike' => 'A copyright claim has been filed against some content you posted - first strike',
+    'mailsub__dmca_notification_secondstrike' => 'A copyright claim has been filed against some content you posted - second strike',
+    'mailsub__dmca_notification_thirdstrike' => 'A copyright claim has been filed against some content you posted - last strike',
 
     'mailsub__dmca_submitted' => 'Your copyright claim was submitted',
     'mailsub__dmca_approved' => 'Your copyright claim was approved',
@@ -95,12 +95,6 @@ $lang = array(
     'title' => 'Title',
     'company' => 'Company Name',
     'phone' => 'Telephone',
-    'member_id' => 'Infringing Member',
-    'member_id_desc' => 'The member responsible for posting the copyrighted material.',
-    'type' => 'Content Type',
-    'type_desc' => 'Select the type of content that contains the copyrighted material.',
-    'item' => 'Content Item',
-    'item_desc' => 'Select the item containing the copyrighted material. You must submit a report for each claimed item.',
     'urls' => 'Infringing URLs',
     'urls_desc' => 'Post a link of each URL containing the copyrighted material.',
     'description' => 'Describe The Original Work',
@@ -129,6 +123,9 @@ $lang = array(
     'dmca_report_deleted' => 'Deleted',
 
     'dmca_approve' => 'Approve',
+    'dmca_approve_title' => 'Are you sure you want to approve this claim?',
+    'dmca_approve_message' => 'This will delete the reported items and apply all the configured penalties to the infringing member.',
+    'dmca_approve_submit' => 'Proceed To Next Step',
     'dmca_deny' => 'Deny',
     'dmca_on_hold' => 'Place On Hold',
     'dmca_delete' => 'Delete',
@@ -137,4 +134,6 @@ $lang = array(
 
     'dcma_chart_infringements' => 'Infringements',
     'dcma_chart_infringements_title' => 'Copyright Infringements For Member',
+
+    'dmca_cant_find_item' => 'One of the URLs you provided is not valid. Please try again.'
 );

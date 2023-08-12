@@ -68,19 +68,12 @@
         <td dir="ltr">
             <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: #f9f9f9;" class="responsive_table">
                 <tbody>
-                    {{if $report->type === \IPS\forums\Topic::class }}
-                        <tr class="responsive_row">
-                            <td dir="ltr" style="font-family: 'Helvetica Neue', helvetica, sans-serif; font-size: 14px;"><a href="{$report->itemLink()}">{$report->itemLink()}<a></td>
-                        </tr>
-                    {{endif}}
-                    {{if $report->type === 'other' }}
-                        {{$links = explode(',', $report->url);}}
+                    {{$links = explode(',', $report->urls);}}
                         {{foreach $links as $url}}
-                            <tr class="responsive_row">
-                                <td dir="ltr" style="font-family: 'Helvetica Neue', helvetica, sans-serif; font-size: 14px;"><a href="{$url}">{$url}<a></td>
-                            </tr>
-                        {{endforeach}}
-                    {{endif}}
+                        <tr class="responsive_row">
+                            <td dir="ltr" style="font-family: 'Helvetica Neue', helvetica, sans-serif; font-size: 14px;"><a href="{$url}">{$url}<a></td>
+                        </tr>
+                    {{endforeach}}
                 </tbody>
             </table>
         </td>

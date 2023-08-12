@@ -1,0 +1,28 @@
+{
+    "normal": {
+        "added": [
+            "dmca_approve_title",
+            "dmca_approve_message",
+            "dmca_approve_submit",
+            "dmca_cant_find_item"
+        ],
+        "edited": [
+            "mailsub__dmca_notification_firststrike",
+            "mailsub__dmca_notification_secondstrike",
+            "mailsub__dmca_notification_thirdstrike"
+        ],
+        "removed": [
+            "member_id",
+            "member_id_desc",
+            "type",
+            "type_desc",
+            "item",
+            "item_desc"
+        ]
+    },
+    "js": {
+        "added": [],
+        "edited": [],
+        "removed": []
+    }
+}
