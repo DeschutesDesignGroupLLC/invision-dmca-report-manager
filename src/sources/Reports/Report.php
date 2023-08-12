@@ -282,15 +282,15 @@ class _Report extends \IPS\Node\Model implements \Stringable
                     ]);
 
                     if ($infringingMember->copyright_strikes == 1) {
-                        $notification = new Notification(Application::load('dmca'), 'firststrike', null, [Settings::i()->dmca_first_strike_email]);
+                        $notification = new Notification(Application::load('dmca'), 'firststrike', null, [Settings::i()->dmca_first_strike_email, $this]);
                         $notification->recipients->attach($infringingMember);
                         $notification->send();
                     } elseif ($infringingMember->copyright_strikes == 2) {
-                        $notification = new Notification(Application::load('dmca'), 'secondstrike', null, [Settings::i()->dmca_second_strike_email]);
+                        $notification = new Notification(Application::load('dmca'), 'secondstrike', null, [Settings::i()->dmca_second_strike_email, $this]);
                         $notification->recipients->attach($infringingMember);
                         $notification->send();
                     } else {
-                        $notification = new Notification(Application::load('dmca'), 'thirdstrike', null, [Settings::i()->dmca_third_strike_email]);
+                        $notification = new Notification(Application::load('dmca'), 'thirdstrike', null, [Settings::i()->dmca_third_strike_email, $this]);
                         $notification->recipients->attach($infringingMember);
                         $notification->send();
 

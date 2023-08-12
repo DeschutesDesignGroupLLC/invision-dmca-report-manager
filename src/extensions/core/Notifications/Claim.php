@@ -138,9 +138,9 @@ class _Claim
     public function parse_firststrike(\IPS\Notification\Inline $notification, $htmlEscape=true): array
     {
         return array(
-            'title' => "A copyright claim has been filed against some content you posted. This is your first strike.",
+            'title' => "A copyright claim has been filed against some content you posted - first strike",
             'url' => \IPS\Http\Url::internal(''),
-            'content' => "A copyright claim has been filed against some content you posted. This is your first strike.",
+            'content' => "A copyright claim has been filed against some content you posted - first strike",
             'author' =>  \IPS\Member::loggedIn(),
         );
     }
@@ -155,9 +155,9 @@ class _Claim
     public function parse_secondstrike(\IPS\Notification\Inline $notification, $htmlEscape=true): array
     {
         return array(
-            'title' => "A copyright claim has been filed against some content you posted. This is your second strike.",
+            'title' => "A copyright claim has been filed against some content you posted - second strike",
             'url' => \IPS\Http\Url::internal(''),
-            'content' => "A copyright claim has been filed against some content you posted. This is your second strike.",
+            'content' => "A copyright claim has been filed against some content you posted - second strike",
             'author' =>  \IPS\Member::loggedIn(),
         );
     }
@@ -172,9 +172,9 @@ class _Claim
     public function parse_thirdstrike(\IPS\Notification\Inline $notification, $htmlEscape=true): array
     {
         return array(
-            'title' => "A copyright claim has been filed against some content you posted. This is your third and last strike.",
+            'title' => "A copyright claim has been filed against some content you posted - last strike",
             'url' => \IPS\Http\Url::internal(''),
-            'content' => "A copyright claim has been filed against some content you posted. This is your third and last strike.",
+            'content' => "A copyright claim has been filed against some content you posted - last strike",
             'author' =>  \IPS\Member::loggedIn(),
         );
     }

@@ -7,7 +7,7 @@
         "theme": true,
         "themeSettings": false,
         "javascript": false,
-        "emailTemplates": false,
+        "emailTemplates": true,
         "hooks": false,
         "acpSearchKeywords": false,
         "settings": false,

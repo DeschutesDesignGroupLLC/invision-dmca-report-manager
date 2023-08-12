@@ -48,12 +48,18 @@
 {$report|raw}
 
 -- {setting="board_name"}</template_content_plaintext><template_pinned>0</template_pinned></template><template><template_app>dmca</template_app><template_name>notification_firststrike</template_name><template_content_html><![CDATA[{$message|raw}
+{$report|raw}
+<br>
 <em style='color: #8c8c8c'>&mdash; {setting="board_name"}</em>]]></template_content_html><template_data>$message, $email</template_data><template_content_plaintext>{$message|raw}
 
 -- {setting="board_name"}</template_content_plaintext><template_pinned>0</template_pinned></template><template><template_app>dmca</template_app><template_name>notification_secondstrike</template_name><template_content_html><![CDATA[{$message|raw}
+{$report|raw}
+<br>
 <em style='color: #8c8c8c'>&mdash; {setting="board_name"}</em>]]></template_content_html><template_data>$message, $email</template_data><template_content_plaintext>{$message|raw}
 
 -- {setting="board_name"}</template_content_plaintext><template_pinned>0</template_pinned></template><template><template_app>dmca</template_app><template_name>notification_thirdstrike</template_name><template_content_html><![CDATA[{$message|raw}
+{$report|raw}
+<br>
 <em style='color: #8c8c8c'>&mdash; {setting="board_name"}</em>]]></template_content_html><template_data>$message, $email</template_data><template_content_plaintext>{$message|raw}
 
 -- {setting="board_name"}</template_content_plaintext><template_pinned>0</template_pinned></template><template><template_app>dmca</template_app><template_name>notification_onhold</template_name><template_content_html><![CDATA[{$message|raw}
