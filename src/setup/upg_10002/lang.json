@@ -1,0 +1,19 @@
+{
+    "normal": {
+        "added": [
+            "mailsub__dmca_notification_filed",
+            "dmca_claim_filed_email"
+        ],
+        "edited": [
+            "mailsub__dmca_notification_firststrike",
+            "mailsub__dmca_notification_secondstrike",
+            "mailsub__dmca_notification_thirdstrike"
+        ],
+        "removed": []
+    },
+    "js": {
+        "added": [],
+        "edited": [],
+        "removed": []
+    }
+}

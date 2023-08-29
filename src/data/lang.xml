@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language>
- <app key="dmca" version="10001">
+ <app key="dmca" version="10002">
   <word key="__app_dmca" js="0">DMCA Copyright Claim Manager</word>
   <word key="menutab__dmca" js="0">DMCA Manager</word>
   <word key="menutab__dmca_icon" js="0">flag</word>
@@ -17,9 +17,10 @@
   <word key="mailsub__dmca_notification_onhold" js="0">Your copyright claim was placed on hold</word>
   <word key="mailsub__dmca_notification_denied" js="0">Your copyright claim was denied</word>
   <word key="mailsub__dmca_notification_deleted" js="0">The item in your copyright claim has been deleted</word>
-  <word key="mailsub__dmca_notification_firststrike" js="0">A copyright claim has been filed against some content you posted - first strike</word>
-  <word key="mailsub__dmca_notification_secondstrike" js="0">A copyright claim has been filed against some content you posted - second strike</word>
-  <word key="mailsub__dmca_notification_thirdstrike" js="0">A copyright claim has been filed against some content you posted - last strike</word>
+  <word key="mailsub__dmca_notification_filed" js="0">A copyright claim has been filed against some content you posted</word>
+  <word key="mailsub__dmca_notification_firststrike" js="0">The copyright claim that was filed against some content you posted was approved. This is your first strike</word>
+  <word key="mailsub__dmca_notification_secondstrike" js="0">The copyright claim that was filed against some content you posted was approved. This is your second strike</word>
+  <word key="mailsub__dmca_notification_thirdstrike" js="0">The copyright claim that was filed against some content you posted was approved. This is your last strike</word>
   <word key="mailsub__dmca_submitted" js="0">Your copyright claim was submitted</word>
   <word key="mailsub__dmca_approved" js="0">Your copyright claim was approved</word>
   <word key="mailsub__dmca_onhold" js="0">Your copyright claim was placed on hold</word>
@@ -75,6 +76,7 @@
   <word key="dmca_submitted_email" js="0">Default Claim Submitted Email</word>
   <word key="dmca_submitted_email_desc" js="0">The email that will be sent when a copyright claim is submitted.</word>
   <word key="dmca_settings_tab_strike_notifications" js="0">Infringing Member Notifications</word>
+  <word key="dmca_claim_filed_email" js="0">Claim Filed Email</word>
   <word key="dmca_first_strike_email" js="0">First Strike Email</word>
   <word key="dmca_second_strike_email" js="0">Second Strike Email</word>
   <word key="dmca_third_strike_email" js="0">Third Strike Email</word>

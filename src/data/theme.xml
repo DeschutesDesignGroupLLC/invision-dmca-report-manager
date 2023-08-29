@@ -61,12 +61,14 @@
                             <td dir="ltr" style="font-family: 'Helvetica Neue', helvetica, sans-serif; font-size: 14px;">{address="$report->address"}</td>
                         </tr>
                         <tr class="responsive_row">
-                            <td dir="ltr" width="250" style="font-family: 'Helvetica Neue', helvetica, sans-serif; font-size: 14px; vertical-align: top;"><strong>Describe The Original Work:</strong></td>
-                            <td dir="ltr" style="font-family: 'Helvetica Neue', helvetica, sans-serif; font-size: 14px;">{$report->description|raw}</td>
-                        </tr>
-                        <tr class="responsive_row">
                             <td dir="ltr" width="250" style="font-family: 'Helvetica Neue', helvetica, sans-serif; font-size: 14px; vertical-align: top;"><strong>Digital Signature:</strong></td>
                             <td dir="ltr" style="font-family: 'Helvetica Neue', helvetica, sans-serif; font-size: 14px;">{$report->signature}</td>
+                        </tr>
+                        <tr class="responsive_row">
+                            <td dir="ltr" width="250" style="font-family: 'Helvetica Neue', helvetica, sans-serif; font-size: 14px; vertical-align: top;"><strong>Describe The Original Work:</strong></td>
+                        </tr>
+                        <tr class="responsive_row">
+                            <td dir="ltr" width="250" style="font-family: 'Helvetica Neue', helvetica, sans-serif; font-size: 14px; vertical-align: top;">{$report->description_work|raw}</td>
                         </tr>
                     </tbody>
                 </table>

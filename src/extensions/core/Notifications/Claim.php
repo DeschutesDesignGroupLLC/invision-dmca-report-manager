@@ -33,7 +33,7 @@ class _Claim
         return array(
             'membersuspension' => array(
                 'type' => 'standard',
-                'notificationTypes' => ['submitted', 'approved', 'onhold', 'denied', 'deleted', 'firststrike', 'secondstrike', 'thirdstrike'],
+                'notificationTypes' => ['submitted', 'approved', 'onhold', 'denied', 'deleted', 'filed', 'firststrike', 'secondstrike', 'thirdstrike'],
                 'default' => ['email', 'inline'],
                 'disabled' => ['push'],
                 'description' => 'notifications__dmca_Claim_desc',
@@ -53,9 +53,9 @@ class _Claim
     public function parse_submitted(\IPS\Notification\Inline $notification, $htmlEscape=true): array
     {
         return array(
-            'title' => "Your copyright claim was submitted",
+            'title' => "Your copyright claim was submitted.",
             'url' => \IPS\Http\Url::internal(''),
-            'content' => "Your copyright claim was submitted",
+            'content' => "Your copyright claim was submitted.",
             'author' =>  \IPS\Member::loggedIn(),
         );
     }
@@ -70,9 +70,9 @@ class _Claim
     public function parse_approved(\IPS\Notification\Inline $notification, $htmlEscape=true): array
     {
         return array(
-            'title' => "Your copyright claim was approved",
+            'title' => "Your copyright claim was approved.",
             'url' => \IPS\Http\Url::internal(''),
-            'content' => "Your copyright claim was approved",
+            'content' => "Your copyright claim was approved.",
             'author' =>  \IPS\Member::loggedIn(),
         );
     }
@@ -87,9 +87,9 @@ class _Claim
     public function parse_onhold(\IPS\Notification\Inline $notification, $htmlEscape=true): array
     {
         return array(
-            'title' => "Your copyright claim was placed on hold",
+            'title' => "Your copyright claim was placed on hold.",
             'url' => \IPS\Http\Url::internal(''),
-            'content' => "Your copyright claim was placed on hold",
+            'content' => "Your copyright claim was placed on hold.",
             'author' =>  \IPS\Member::loggedIn(),
         );
     }
@@ -104,9 +104,9 @@ class _Claim
     public function parse_denied(\IPS\Notification\Inline $notification, $htmlEscape=true): array
     {
         return array(
-            'title' => "Your copyright claim was denied",
+            'title' => "Your copyright claim was denied.",
             'url' => \IPS\Http\Url::internal(''),
-            'content' => "Your copyright claim was denied",
+            'content' => "Your copyright claim was denied.",
             'author' =>  \IPS\Member::loggedIn(),
         );
     }
@@ -121,9 +121,26 @@ class _Claim
     public function parse_deleted(\IPS\Notification\Inline $notification, $htmlEscape=true): array
     {
         return array(
-            'title' => "The item in your copyright claim has been deleted",
+            'title' => "The item in your copyright claim has been deleted.",
             'url' => \IPS\Http\Url::internal(''),
-            'content' => "The item in your copyright claim has been deleted",
+            'content' => "The item in your copyright claim has been deleted.",
+            'author' =>  \IPS\Member::loggedIn(),
+        );
+    }
+
+    /**
+     * Parse notification: filed
+     *
+     * @param	\IPS\Notification\Inline	$notification	The notification
+     * @param	bool						$htmlEscape		TRUE to escape HTML in title
+     * @return	array
+     */
+    public function parse_filed(\IPS\Notification\Inline $notification, $htmlEscape=true): array
+    {
+        return array(
+            'title' => "A copyright claim has been filed against some content you posted. Check your email for more information.",
+            'url' => \IPS\Http\Url::internal(''),
+            'content' => "A copyright claim has been filed against some content you posted. Check your email for more information.",
             'author' =>  \IPS\Member::loggedIn(),
         );
     }
@@ -138,9 +155,9 @@ class _Claim
     public function parse_firststrike(\IPS\Notification\Inline $notification, $htmlEscape=true): array
     {
         return array(
-            'title' => "A copyright claim has been filed against some content you posted - first strike",
+            'title' => "The copyright claim that was filed against some content you posted was approved. This is your first strike. Check your email for more information.",
             'url' => \IPS\Http\Url::internal(''),
-            'content' => "A copyright claim has been filed against some content you posted - first strike",
+            'content' => "The copyright claim that was filed against some content you posted was approved. This is your first strike. Check your email for more information.",
             'author' =>  \IPS\Member::loggedIn(),
         );
     }
@@ -155,9 +172,9 @@ class _Claim
     public function parse_secondstrike(\IPS\Notification\Inline $notification, $htmlEscape=true): array
     {
         return array(
-            'title' => "A copyright claim has been filed against some content you posted - second strike",
+            'title' => "The copyright claim that was filed against some content you posted was approved. This is your second strike. Check your email for more information.",
             'url' => \IPS\Http\Url::internal(''),
-            'content' => "A copyright claim has been filed against some content you posted - second strike",
+            'content' => "The copyright claim that was filed against some content you posted was approved. This is your second strike. Check your email for more information.",
             'author' =>  \IPS\Member::loggedIn(),
         );
     }
@@ -172,9 +189,9 @@ class _Claim
     public function parse_thirdstrike(\IPS\Notification\Inline $notification, $htmlEscape=true): array
     {
         return array(
-            'title' => "A copyright claim has been filed against some content you posted - last strike",
+            'title' => "The copyright claim that was filed against some content you posted was approved. This is your last strike. Check your email for more information.",
             'url' => \IPS\Http\Url::internal(''),
-            'content' => "A copyright claim has been filed against some content you posted - last strike",
+            'content' => "The copyright claim that was filed against some content you posted was approved. This is your last strike. Check your email for more information.",
             'author' =>  \IPS\Member::loggedIn(),
         );
     }

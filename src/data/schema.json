@@ -72,18 +72,6 @@
                 "unsigned": false,
                 "auto_increment": false
             },
-            "description": {
-                "name": "description",
-                "type": "TEXT",
-                "length": null,
-                "decimals": null,
-                "values": null,
-                "allow_null": true,
-                "default": null,
-                "comment": "",
-                "unsigned": false,
-                "auto_increment": false
-            },
             "updated_at": {
                 "name": "updated_at",
                 "type": "INT",
@@ -170,6 +158,18 @@
             },
             "urls": {
                 "name": "urls",
+                "type": "TEXT",
+                "length": null,
+                "decimals": null,
+                "values": null,
+                "allow_null": true,
+                "default": null,
+                "comment": "",
+                "unsigned": false,
+                "auto_increment": false
+            },
+            "description_work": {
+                "name": "description_work",
                 "type": "TEXT",
                 "length": null,
                 "decimals": null,
