@@ -1,0 +1,6 @@
+<ips:template parameters="$name, $message, $report, $email" />
+Hi {$name},
+{$message|raw}
+{$report|raw}
+
+-- {setting="board_name"}

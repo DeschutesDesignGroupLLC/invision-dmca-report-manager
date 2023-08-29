@@ -1,0 +1,23 @@
+{
+    "id": 10002,
+    "name": "1.0.2",
+    "steps": {
+        "queries": true,
+        "lang": true,
+        "theme": true,
+        "themeSettings": false,
+        "javascript": false,
+        "emailTemplates": true,
+        "hooks": false,
+        "acpSearchKeywords": false,
+        "settings": true,
+        "tasks": false,
+        "modules": false,
+        "widgets": false,
+        "customOptions": false,
+        "customRoutines": false
+    },
+    "forceMainUpgrader": false,
+    "forceManualDownloadNoCiC": false,
+    "forceManualDownloadCiC": false
+}

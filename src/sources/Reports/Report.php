@@ -143,7 +143,7 @@ class _Report extends \IPS\Node\Model implements \Stringable
                 }
             }
         }, null, null, 'other'));
-        $form->add(new Editor('description', $this->description ?? null, true, [
+        $form->add(new Editor('description_work', $this->description_work ?? null, true, [
             'app' => 'dmca',
             'key' => 'ReportDescription',
             'autoSaveKey' => 'dmca_report',
@@ -184,6 +184,26 @@ class _Report extends \IPS\Node\Model implements \Stringable
                 $notification->send();
             } else {
                 Email::buildFromTemplate('dmca', 'submitted', [$this->name, Settings::i()->dmca_submitted_email, $this], Email::TYPE_TRANSACTIONAL)->send($this->email);
+            }
+
+            $urls = explode(',', $this->urls);
+
+            $emailProcessed = [];
+            foreach ($urls as $url) {
+                $item = self::findContentItem($url);
+
+                if (\is_object($item) && method_exists($item, 'author')) {
+                    $infringingMember = $item->author();
+
+                    if ($infringingMember && $infringingMember->member_id && !\in_array($infringingMember->member_id, $emailProcessed)) {
+
+                        $notification = new Notification(Application::load('dmca'), 'filed', null, [Settings::i()->dmca_claim_filed_email, $this]);
+                        $notification->recipients->attach($infringingMember);
+                        $notification->send();
+
+                        $emailProcessed[] = $infringingMember->member_id;
+                    }
+                }
             }
         }
 

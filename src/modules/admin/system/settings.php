@@ -114,6 +114,11 @@ class _settings extends \IPS\Dispatcher\Controller
 
         $form->addTab('dmca_settings_tab_strike_notifications');
         $form->addHeader('dmca_settings');
+        $form->add(new Form\Editor('dmca_claim_filed_email', \IPS\Settings::i()->dmca_claim_filed_email, true, [
+            'autoSaveKey' => 'dmca_claim_filed_email',
+            'app' => 'dmca',
+            'key' => 'ClaimFiledEmail'
+        ]));
         $form->add(new Form\Editor('dmca_first_strike_email', \IPS\Settings::i()->dmca_first_strike_email, true, [
             'autoSaveKey' => 'dmca_first_strike_email',
             'app' => 'dmca',

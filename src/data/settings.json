@@ -24,6 +24,10 @@
         "default": ""
     },
     {
+        "key": "dmca_claim_filed_email",
+        "default": ""
+    },
+    {
         "key": "dmca_claim_intro",
         "default": ""
     },
