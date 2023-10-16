@@ -16,6 +16,10 @@
         "default": ""
     },
     {
+        "key": "dmca_admin_group",
+        "default": ""
+    },
+    {
         "key": "dmca_approval_email",
         "default": ""
     },

@@ -90,7 +90,7 @@ class _FileAClaim extends \IPS\core\FrontNavigation\FrontNavigationAbstract
      * @param	bool	$noStore	If true, will skip datastore and get from DB (used for ACP preview)
      * @return	array
      */
-    public function children($noStore=false)
+    public function children($noStore = false)
     {
         return null;
     }

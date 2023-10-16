@@ -84,6 +84,13 @@ class _settings extends \IPS\Dispatcher\Controller
             'key' => 'FinalSteps'
         ]));
 
+        $form->addTab('dmca_settings_tab_admin_notifications');
+        $form->addHeader('dmca_settings');
+        $form->add(new Form\Select('dmca_admin_group', explode(',', \IPS\Settings::i()->dmca_admin_group), false, [
+            'options' => $groups,
+            'multiple' => true,
+        ]));
+
         $form->addTab('dmca_settings_tab_notifications');
         $form->addHeader('dmca_settings');
         $form->add(new Form\Editor('dmca_submitted_email', \IPS\Settings::i()->dmca_submitted_email, true, [

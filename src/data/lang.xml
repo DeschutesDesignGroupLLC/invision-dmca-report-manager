@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language>
- <app key="dmca" version="10002">
+ <app key="dmca" version="10003">
   <word key="__app_dmca" js="0">DMCA Copyright Claim Manager</word>
   <word key="menutab__dmca" js="0">DMCA Manager</word>
   <word key="menutab__dmca_icon" js="0">flag</word>
@@ -13,6 +13,7 @@
   <word key="notifications__dmca_Claim" js="0">Copyright Claims</word>
   <word key="notifications__dmca_Claim_desc" js="0">Receive notifications regarding updates about your filed copyright claims.</word>
   <word key="mailsub__dmca_notification_submitted" js="0">Your copyright claim was submitted</word>
+  <word key="mailsub__dmca_notification_submitted_admin" js="0">A copyright claim was submitted</word>
   <word key="mailsub__dmca_notification_approved" js="0">Your copyright claim was approved</word>
   <word key="mailsub__dmca_notification_onhold" js="0">Your copyright claim was placed on hold</word>
   <word key="mailsub__dmca_notification_denied" js="0">Your copyright claim was denied</word>
@@ -22,6 +23,7 @@
   <word key="mailsub__dmca_notification_secondstrike" js="0">The copyright claim that was filed against some content you posted was approved. This is your second strike</word>
   <word key="mailsub__dmca_notification_thirdstrike" js="0">The copyright claim that was filed against some content you posted was approved. This is your last strike</word>
   <word key="mailsub__dmca_submitted" js="0">Your copyright claim was submitted</word>
+  <word key="mailsub__dmca_submitted_admin" js="0">A copyright claim was submitted</word>
   <word key="mailsub__dmca_approved" js="0">Your copyright claim was approved</word>
   <word key="mailsub__dmca_onhold" js="0">Your copyright claim was placed on hold</word>
   <word key="mailsub__dmca_denied" js="0">Your copyright claim was denied</word>
@@ -37,6 +39,7 @@
   <word key="dmca_wizard_final" js="0">Final Steps</word>
   <word key="dmca_settings" js="0">Settings</word>
   <word key="dmca_settings_tab_claims" js="0">Claims Management</word>
+  <word key="dmca_settings_tab_admin_notifications" js="0">Admin Notifications</word>
   <word key="dmca_settings_tab_notifications" js="0">Claimant Notifications</word>
   <word key="dmca_settings_tab_form" js="0">Claim Form</word>
   <word key="dmca_settings_groups" js="0">Groups</word>
@@ -59,6 +62,8 @@
   <word key="dmca_warning_desc" js="0">The warning reason that is applied when a member receives a copyright infringement strike.</word>
   <word key="dmca_group" js="0">Infringing Group</word>
   <word key="dmca_group_desc" js="0">The group the member will be moved to when they receive their third strike. Select none to not move a member.</word>
+  <word key="dmca_admin_group" js="0">Admin Group</word>
+  <word key="dmca_admin_group_desc" js="0">Members of the selected group will receive notifications when a claim has been submitted.</word>
   <word key="dmca_claim_intro" js="0">Claim Form Intro</word>
   <word key="dmca_claim_intro_desc" js="0">Text that will be shown above the claim submission form.</word>
   <word key="dmca_faq" js="0">Frequently Asked Questions</word>
@@ -88,8 +93,8 @@
   <word key="phone" js="0">Telephone</word>
   <word key="urls" js="0">Infringing URLs</word>
   <word key="urls_desc" js="0">Post a link of each URL containing the copyrighted material.</word>
-  <word key="description" js="0">Describe The Original Work</word>
-  <word key="description_desc" js="0">Describe the copyrighted material in full detail, including links to the original work or evidence of source material.</word>
+  <word key="description_work" js="0">Describe The Original Work</word>
+  <word key="description_work_desc" js="0">Describe the copyrighted material in full detail, including links to the original work or evidence of source material.</word>
   <word key="accept_terms" js="0">I Understand And Agree</word>
   <word key="accept_terms_desc" js="0">By checking this box, you attest, under penalty of perjury, that you have a good faith belief that use of the material in this report is not authorized by the copyright owner, its agent, or the law; AND you are authorized to act on behalf of the copyright owner; AND you understand, under 17 U.S.C. § 512(f), you may be liable for any damages, including costs and attorneys' fees, if you knowingly materially misrepresent reported material.</word>
   <word key="signature" js="0">Digital Signature</word>

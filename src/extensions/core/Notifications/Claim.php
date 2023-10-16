@@ -33,7 +33,7 @@ class _Claim
         return array(
             'membersuspension' => array(
                 'type' => 'standard',
-                'notificationTypes' => ['submitted', 'approved', 'onhold', 'denied', 'deleted', 'filed', 'firststrike', 'secondstrike', 'thirdstrike'],
+                'notificationTypes' => ['submitted', 'submitted_admin', 'approved', 'onhold', 'denied', 'deleted', 'filed', 'firststrike', 'secondstrike', 'thirdstrike'],
                 'default' => ['email', 'inline'],
                 'disabled' => ['push'],
                 'description' => 'notifications__dmca_Claim_desc',
@@ -50,12 +50,29 @@ class _Claim
      * @param	bool						$htmlEscape		TRUE to escape HTML in title
      * @return	array
      */
-    public function parse_submitted(\IPS\Notification\Inline $notification, $htmlEscape=true): array
+    public function parse_submitted(\IPS\Notification\Inline $notification, $htmlEscape = true): array
     {
         return array(
             'title' => "Your copyright claim was submitted.",
             'url' => \IPS\Http\Url::internal(''),
             'content' => "Your copyright claim was submitted.",
+            'author' =>  \IPS\Member::loggedIn(),
+        );
+    }
+
+    /**
+     * Parse notification: submitted_admin
+     *
+     * @param	\IPS\Notification\Inline	$notification	The notification
+     * @param	bool						$htmlEscape		TRUE to escape HTML in title
+     * @return	array
+     */
+    public function parse_submitted_admin(\IPS\Notification\Inline $notification, $htmlEscape = true): array
+    {
+        return array(
+            'title' => "A copyright claim was submitted.",
+            'url' => \IPS\Http\Url::internal(''),
+            'content' => "A copyright claim was submitted.",
             'author' =>  \IPS\Member::loggedIn(),
         );
     }
@@ -67,7 +84,7 @@ class _Claim
      * @param	bool						$htmlEscape		TRUE to escape HTML in title
      * @return	array
      */
-    public function parse_approved(\IPS\Notification\Inline $notification, $htmlEscape=true): array
+    public function parse_approved(\IPS\Notification\Inline $notification, $htmlEscape = true): array
     {
         return array(
             'title' => "Your copyright claim was approved.",
@@ -84,7 +101,7 @@ class _Claim
      * @param	bool						$htmlEscape		TRUE to escape HTML in title
      * @return	array
      */
-    public function parse_onhold(\IPS\Notification\Inline $notification, $htmlEscape=true): array
+    public function parse_onhold(\IPS\Notification\Inline $notification, $htmlEscape = true): array
     {
         return array(
             'title' => "Your copyright claim was placed on hold.",
@@ -101,7 +118,7 @@ class _Claim
      * @param	bool						$htmlEscape		TRUE to escape HTML in title
      * @return	array
      */
-    public function parse_denied(\IPS\Notification\Inline $notification, $htmlEscape=true): array
+    public function parse_denied(\IPS\Notification\Inline $notification, $htmlEscape = true): array
     {
         return array(
             'title' => "Your copyright claim was denied.",
@@ -118,7 +135,7 @@ class _Claim
      * @param	bool						$htmlEscape		TRUE to escape HTML in title
      * @return	array
      */
-    public function parse_deleted(\IPS\Notification\Inline $notification, $htmlEscape=true): array
+    public function parse_deleted(\IPS\Notification\Inline $notification, $htmlEscape = true): array
     {
         return array(
             'title' => "The item in your copyright claim has been deleted.",
@@ -135,7 +152,7 @@ class _Claim
      * @param	bool						$htmlEscape		TRUE to escape HTML in title
      * @return	array
      */
-    public function parse_filed(\IPS\Notification\Inline $notification, $htmlEscape=true): array
+    public function parse_filed(\IPS\Notification\Inline $notification, $htmlEscape = true): array
     {
         return array(
             'title' => "A copyright claim has been filed against some content you posted. Check your email for more information.",
@@ -152,7 +169,7 @@ class _Claim
      * @param	bool						$htmlEscape		TRUE to escape HTML in title
      * @return	array
      */
-    public function parse_firststrike(\IPS\Notification\Inline $notification, $htmlEscape=true): array
+    public function parse_firststrike(\IPS\Notification\Inline $notification, $htmlEscape = true): array
     {
         return array(
             'title' => "The copyright claim that was filed against some content you posted was approved. This is your first strike. Check your email for more information.",
@@ -169,7 +186,7 @@ class _Claim
      * @param	bool						$htmlEscape		TRUE to escape HTML in title
      * @return	array
      */
-    public function parse_secondstrike(\IPS\Notification\Inline $notification, $htmlEscape=true): array
+    public function parse_secondstrike(\IPS\Notification\Inline $notification, $htmlEscape = true): array
     {
         return array(
             'title' => "The copyright claim that was filed against some content you posted was approved. This is your second strike. Check your email for more information.",
@@ -186,7 +203,7 @@ class _Claim
      * @param	bool						$htmlEscape		TRUE to escape HTML in title
      * @return	array
      */
-    public function parse_thirdstrike(\IPS\Notification\Inline $notification, $htmlEscape=true): array
+    public function parse_thirdstrike(\IPS\Notification\Inline $notification, $htmlEscape = true): array
     {
         return array(
             'title' => "The copyright claim that was filed against some content you posted was approved. This is your last strike. Check your email for more information.",

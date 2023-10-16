@@ -56,7 +56,7 @@ class _FinalSteps
      * @param	bool		$viewOnly	If true, just check if the user can see the attachment rather than download it
      * @return	bool
      */
-    public function attachmentPermissionCheck($member, $id1, $id2, $id3, $attachment, $viewOnly=false): bool
+    public function attachmentPermissionCheck($member, $id1, $id2, $id3, $attachment, $viewOnly = false): bool
     {
         /* Make sure that you add a relevant permission check to prevent attachments being accessed via ID enumeration. */
         return true;
