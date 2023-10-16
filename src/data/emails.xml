@@ -5,10 +5,19 @@
 <em style='color: #8c8c8c'>&mdash; {setting="board_name"}</em>]]></template_content_html><template_data>$message, $report, $email</template_data><template_content_plaintext>{$message|raw}
 {$report|raw}
 
+-- {setting="board_name"}</template_content_plaintext><template_pinned>0</template_pinned></template><template><template_app>dmca</template_app><template_name>notification_submitted_admin</template_name><template_content_html><![CDATA[<br>
+A new claim has been submitted.
+<br>
+<br>
+{$report|raw}
+<br>
+<em style='color: #8c8c8c'>&mdash; {setting="board_name"}</em>]]></template_content_html><template_data>$report, $email</template_data><template_content_plaintext>A new claim has been submitted.
+{$report|raw}
+
 -- {setting="board_name"}</template_content_plaintext><template_pinned>0</template_pinned></template><template><template_app>dmca</template_app><template_name>notification_filed</template_name><template_content_html><![CDATA[{$message|raw}
 {$report|raw}
 <br>
-<em style='color: #8c8c8c'>&mdash; {setting="board_name"}</em>]]></template_content_html><template_data>$message, $email</template_data><template_content_plaintext>{$message|raw}
+<em style='color: #8c8c8c'>&mdash; {setting="board_name"}</em>]]></template_content_html><template_data>$message, $report, $email</template_data><template_content_plaintext>{$message|raw}
 
 -- {setting="board_name"}</template_content_plaintext><template_pinned>0</template_pinned></template><template><template_app>dmca</template_app><template_name>denied</template_name><template_content_html><![CDATA[<strong style="font-size: 17px">Hi {$name},</strong>
 <br>
@@ -64,7 +73,7 @@
 -- {setting="board_name"}</template_content_plaintext><template_pinned>0</template_pinned></template><template><template_app>dmca</template_app><template_name>notification_firststrike</template_name><template_content_html><![CDATA[{$message|raw}
 {$report|raw}
 <br>
-<em style='color: #8c8c8c'>&mdash; {setting="board_name"}</em>]]></template_content_html><template_data>$message, $email</template_data><template_content_plaintext>{$message|raw}
+<em style='color: #8c8c8c'>&mdash; {setting="board_name"}</em>]]></template_content_html><template_data>$message, $report, $email</template_data><template_content_plaintext>{$message|raw}
 
 -- {setting="board_name"}</template_content_plaintext><template_pinned>0</template_pinned></template><template><template_app>dmca</template_app><template_name>notification_secondstrike</template_name><template_content_html><![CDATA[{$message|raw}
 {$report|raw}
@@ -74,7 +83,7 @@
 -- {setting="board_name"}</template_content_plaintext><template_pinned>0</template_pinned></template><template><template_app>dmca</template_app><template_name>notification_thirdstrike</template_name><template_content_html><![CDATA[{$message|raw}
 {$report|raw}
 <br>
-<em style='color: #8c8c8c'>&mdash; {setting="board_name"}</em>]]></template_content_html><template_data>$message, $email</template_data><template_content_plaintext>{$message|raw}
+<em style='color: #8c8c8c'>&mdash; {setting="board_name"}</em>]]></template_content_html><template_data>$message, $report, $email</template_data><template_content_plaintext>{$message|raw}
 
 -- {setting="board_name"}</template_content_plaintext><template_pinned>0</template_pinned></template><template><template_app>dmca</template_app><template_name>notification_onhold</template_name><template_content_html><![CDATA[{$message|raw}
 {$report|raw}

@@ -1,0 +1,23 @@
+{
+    "normal": {
+        "added": [
+            "mailsub__dmca_notification_submitted_admin",
+            "mailsub__dmca_submitted_admin",
+            "dmca_settings_tab_admin_notifications",
+            "dmca_admin_group",
+            "dmca_admin_group_desc",
+            "description_work",
+            "description_work_desc"
+        ],
+        "edited": [],
+        "removed": [
+            "description",
+            "description_desc"
+        ]
+    },
+    "js": {
+        "added": [],
+        "edited": [],
+        "removed": []
+    }
+}

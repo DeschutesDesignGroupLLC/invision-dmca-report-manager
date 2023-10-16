@@ -7,6 +7,7 @@
  <setting key="dcma_warning_enable"><![CDATA[{"key":"dcma_warning_enable","default":""}]]></setting>
  <setting key="dcma_warning_moderate_content"><![CDATA[{"key":"dcma_warning_moderate_content","default":""}]]></setting>
  <setting key="dcma_warning_posting_restriction"><![CDATA[{"key":"dcma_warning_posting_restriction","default":""}]]></setting>
+ <setting key="dmca_admin_group"><![CDATA[{"key":"dmca_admin_group","default":""}]]></setting>
  <setting key="dmca_approval_email"><![CDATA[{"key":"dmca_approval_email","default":""}]]></setting>
  <setting key="dmca_automatic_deletion"><![CDATA[{"key":"dmca_automatic_deletion","default":""}]]></setting>
  <setting key="dmca_claim_filed_email"><![CDATA[{"key":"dmca_claim_filed_email","default":""}]]></setting>
