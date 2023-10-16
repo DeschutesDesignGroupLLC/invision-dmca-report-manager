@@ -1,0 +1,5 @@
+<ips:template parameters="$report, $email" />
+A new claim has been submitted.
+{$report|raw}
+
+-- {setting="board_name"}

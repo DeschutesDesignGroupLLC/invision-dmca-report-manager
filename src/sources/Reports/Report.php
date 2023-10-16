@@ -186,6 +186,26 @@ class _Report extends \IPS\Node\Model implements \Stringable
                 Email::buildFromTemplate('dmca', 'submitted', [$this->name, Settings::i()->dmca_submitted_email, $this], Email::TYPE_TRANSACTIONAL)->send($this->email);
             }
 
+            if ($adminGroups = \IPS\Settings::i()->dmca_admin_group) {
+                $select = \IPS\Db::i()->select('*', \IPS\Member::$databaseTable, [
+                    \IPS\Db::i()->findInSet('mgroup_others', explode(',', $adminGroups)) .
+                    ' OR ' .
+                    \IPS\Db::i()->findInSet('member_group_id', explode(',', $adminGroups))
+                ]);
+
+                $adminMembers = array_map(function ($member) {
+                    return \IPS\Member::constructFromData($member);
+                }, iterator_to_array($select));
+
+                $notification = new Notification(Application::load('dmca'), 'submitted_admin', null, [$this]);
+
+                foreach ($adminMembers as $adminMember) {
+                    $notification->recipients->attach($adminMember);
+                }
+
+                $notification->send();
+            }
+
             $urls = explode(',', $this->urls);
 
             $emailProcessed = [];
@@ -225,6 +245,7 @@ class _Report extends \IPS\Node\Model implements \Stringable
             $classes = match ($url->hiddenQueryString['app']) {
                 'forums' => [Topic::class, Post::class],
                 'gallery' => [Image::class, Album::class],
+                default => []
             };
         }
 
