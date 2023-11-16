@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language>
- <app key="dmca" version="10003">
+ <app key="dmca" version="10004">
   <word key="__app_dmca" js="0">DMCA Copyright Claim Manager</word>
   <word key="menutab__dmca" js="0">DMCA Manager</word>
   <word key="menutab__dmca_icon" js="0">flag</word>
